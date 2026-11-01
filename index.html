@@ -1,56 +1,370 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bibliothèque de français</title>
-  <style>
-    :root {
-      color-scheme: light;
-      --ink: #252323;
-      --paper: #f7f0e5;
-      --wine: #702b3b;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 32px 20px;
-      background: var(--paper);
-      color: var(--ink);
-      font-family: Georgia, "Times New Roman", serif;
-    }
-    main {
-      width: min(100%, 680px);
-      text-align: center;
-    }
-    h1 {
-      margin: 0 0 18px;
-      color: var(--wine);
-      font-size: clamp(2rem, 6vw, 3.2rem);
-      font-weight: 500;
-    }
-    p {
-      margin: 0 auto;
-      max-width: 520px;
-      font-family: Arial, sans-serif;
-      font-size: 1rem;
-      line-height: 1.7;
-    }
-    .note {
-      margin-top: 14px;
-      color: #716968;
-      font-size: .9rem;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les situations embarrassantes — Plus-que-parfait</title>
+<style>
+:root{--ink:#252323;--muted:#77716e;--accent:#702b3b;--accent2:#f2e6e5;--line:#e6ddd5;--paper:#fffdf8;--bg:#f7f0e5;--green:#e8f6ed;--red:#fff0ee;--gold:#fff7df}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+header{background:linear-gradient(135deg,#f1e4d7,#faf3e8);padding:36px 20px 26px;border-bottom:1px solid var(--line)}
+.wrap{max-width:960px;margin:auto;padding:0 18px}h1{font-size:clamp(29px,5vw,43px);line-height:1.12;margin:8px 0}h2{font-size:24px;line-height:1.25;margin:0 0 14px}h3{font-size:18px;margin:18px 0 8px}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:800}.lead{color:#625b57;max-width:680px;margin:8px 0 0}.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.chip{font-size:12px;border:1px solid #d9bfc0;background:#fffdf8;border-radius:99px;padding:5px 10px}
+nav{display:flex;gap:7px;flex-wrap:wrap;margin-top:20px}nav a{font-size:13px;color:#702b3b;text-decoration:none;background:#fffdf8;border:1px solid var(--line);border-radius:8px;padding:6px 9px}
+main{padding:25px 0 65px}.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:18px;box-shadow:0 3px 14px #1c274008}
+.note{background:var(--accent2);border-left:4px solid var(--accent);padding:13px 15px;border-radius:9px;margin:12px 0}
+.tip{background:#f3ece2;border-left:4px solid #7195d3;padding:12px 14px;border-radius:9px;margin:12px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.mini{background:#fbf7f0;border:1px solid var(--line);border-radius:11px;padding:13px}
+table{border-collapse:collapse;width:100%;margin:12px 0}th,td{border:1px solid var(--line);padding:9px;text-align:left}th{background:#f0e5df}
+label{display:block;font-weight:650;margin:9px 0 5px}.question{padding:14px 0;border-bottom:1px solid var(--line)}.question:last-child{border-bottom:0}
+input[type=text],select,textarea{width:100%;border:1px solid #cfc2b8;border-radius:8px;padding:10px 11px;background:#fffdf8;color:var(--ink);font:inherit}
+textarea{min-height:82px;resize:vertical}input[type=radio],input[type=checkbox]{accent-color:var(--accent);margin-right:7px}
+.opt{display:block;font-weight:400;margin:6px 0}.vocab{border-bottom:2px dotted var(--accent);color:#702b3b;cursor:pointer;font-weight:650}.vocab:hover,.vocab:focus{background:#f2e6e5;outline:0;border-radius:3px}
+button{border:0;background:var(--accent);color:white;border-radius:9px;padding:10px 15px;font:650 14px system-ui;cursor:pointer;margin:9px 7px 0 0}button.secondary{background:#eee3dc;color:#702b3b}button:hover{filter:brightness(.97)}
+.feedback{display:none;padding:11px 13px;border-radius:9px;margin-top:10px}.feedback.show{display:block}.good{background:var(--green)}.bad{background:var(--red)}.answer{display:none;background:#f3ece2;border-radius:9px;padding:11px 13px;margin-top:9px}.answer.show{display:block}
+.small{font-size:13px;color:var(--muted)}.sectionno{color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+#vocabPanel{position:fixed;z-index:20;right:18px;bottom:18px;width:min(340px,calc(100vw - 36px));max-height:min(55vh,440px);overflow-y:auto;background:#fffdf8;border:1px solid #d7c4bd;box-shadow:0 12px 40px #211b1b25;border-radius:14px;padding:16px;display:none}
+#vocabPanel.open{display:block}#vocabPanel .translation{font-size:23px;color:var(--accent);font-weight:750;margin:5px 0}#vocabPanel .close{float:right;background:#eee3dc;color:#702b3b;padding:4px 9px;margin:0}
+#vocabPanel .example{font-size:14px;color:#625b57;margin-top:8px}
+.vocab-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.switch{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted)}
+.wordlist{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.word{border:1px solid #d9c7c0;background:#fbf6ef;padding:7px 10px;border-radius:8px;cursor:pointer;color:#702b3b}
+.progress{height:7px;background:#e8ded4;border-radius:99px;overflow:hidden;margin-top:18px}.progress span{display:block;height:100%;width:0;background:var(--accent);transition:width .2s}
+footer{text-align:center;color:var(--muted);padding:20px;font-size:13px}
+@media(max-width:600px){.card{padding:17px}header{padding-top:27px}table{font-size:14px}td,th{padding:7px}}
+@media print{body{background:white}.card{box-shadow:none;break-inside:avoid}nav,button,#vocabPanel,.progress{display:none!important}.answer{display:none!important}}
+</style>
 </head>
 <body>
-  <main>
-    <h1>Bibliothèque de français</h1>
-    <p>Un espace pour apprendre, pratiquer et approfondir le français.</p>
-    <p class="note">La bibliothèque est en cours de construction.</p>
-  </main>
+<header><div class="wrap">
+<div class="eyebrow">Français · A2 → B1 · grammaire & vocabulaire</div>
+<h1>Les situations embarrassantes</h1>
+<p class="lead">Oublis, malentendus et petites catastrophes du quotidien. Raconter ce qui s’est passé… et ce qui s’était passé avant.</p>
+<div class="meta"><span class="chip">Le plus-que-parfait</span><span class="chip">Passé composé & imparfait</span><span class="chip">Vocabulaire du quotidien</span></div>
+<nav><a href="#comprendre">Comprendre</a><a href="#theorie">Fiche mémo</a><a href="#former">Former</a><a href="#temps">Choisir le temps</a><a href="#lexique">Lexique</a><a href="#histoires">Histoires</a><a href="#corriger">Corriger</a><a href="#transformer">Transformer</a><a href="#production">Production</a></nav>
+<div class="progress"><span id="progressBar"></span></div>
+</div></header>
+<main class="wrap">
+
+
+
+<section class="card" id="comprendre">
+<div class="sectionno">01 · Rappel actif</div><h2>Que sais-tu de la formation du plus-que-parfait ?</h2>
+<p>Tu as déjà étudié ce temps. Essaie de répondre sans regarder la fiche mémo. Tu pourras la consulter ensuite pour vérifier tes réponses.</p>
+<div class="question"><strong>1. Quelle est la structure du plus-que-parfait ?</strong>
+<label class="opt"><input type="radio" name="vf1" value="a">Auxiliaire avoir ou être à l’imparfait + participe passé</label>
+<label class="opt"><input type="radio" name="vf1" value="b">Auxiliaire avoir ou être au présent + participe passé</label>
+<label class="opt"><input type="radio" name="vf1" value="c">Imparfait du verbe + infinitif</label>
+<button onclick="checkRadio('vf1','a','fb-vf1','Exact : auxiliaire à l’imparfait + participe passé.')">Vérifier</button><div class="feedback" id="fb-vf1"></div></div>
+<div class="question"><strong>2. Quel auxiliaire utilise-t-on pour former ces verbes ?</strong>
+<div class="grid">
+<div><label>arriver</label><select id="aux1"><option value="">— Choisir —</option><option>avoir</option><option>être</option></select></div>
+<div><label>oublier</label><select id="aux2"><option value="">— Choisir —</option><option>avoir</option><option>être</option></select></div>
+<div><label>se tromper</label><select id="aux3"><option value="">— Choisir —</option><option>avoir</option><option>être</option></select></div>
+<div><label>prendre</label><select id="aux4"><option value="">— Choisir —</option><option>avoir</option><option>être</option></select></div>
+</div>
+<button onclick="checkMany({'aux1':'être','aux2':'avoir','aux3':'être','aux4':'avoir'},'fb-aux')">Vérifier</button><div class="feedback" id="fb-aux"></div></div>
+<div class="question"><strong>3. Complète avec l’auxiliaire à l’imparfait.</strong>
+<div class="grid">
+<div><label>Je ______ oublié.</label><select id="im1"><option value="">—</option><option>avais</option><option>étais</option><option>ai</option></select></div>
+<div><label>Nous ______ arrivés.</label><select id="im2"><option value="">—</option><option>avions</option><option>étions</option><option>sommes</option></select></div>
+<div><label>Elle ______ compris.</label><select id="im3"><option value="">—</option><option>avait</option><option>était</option><option>a</option></select></div>
+<div><label>Ils ______ partis.</label><select id="im4"><option value="">—</option><option>avaient</option><option>étaient</option><option>sont</option></select></div>
+</div>
+<button onclick="checkMany({'im1':'avais','im2':'étions','im3':'avait','im4':'étaient'},'fb-imparfait-aux')">Vérifier</button><div class="feedback" id="fb-imparfait-aux"></div></div>
+<div class="question"><strong>4. Vrai ou faux : avec l’auxiliaire être, le participe passé s’accorde avec le sujet.</strong>
+<label class="opt"><input type="radio" name="accord" value="v">Vrai</label><label class="opt"><input type="radio" name="accord" value="f">Faux</label>
+<button onclick="checkRadio('accord','v','fb-accord','Oui : Elle était partie ; Ils étaient arrivés.')">Vérifier</button><div class="feedback" id="fb-accord"></div></div>
+<div class="question"><strong>5. Choisis la forme correcte.</strong>
+<div class="grid">
+<div><label>Elle (partir)</label><select id="pp1"><option value="">— Choisir —</option><option>elle avait parti</option><option>elle était partie</option><option>elle était parti</option></select></div>
+<div><label>Ils (oublier)</label><select id="pp2"><option value="">— Choisir —</option><option>ils avaient oubliés</option><option>ils étaient oublié</option><option>ils avaient oublié</option></select></div>
+<div><label>Nous (se tromper)</label><select id="pp3"><option value="">— Choisir —</option><option>nous nous étions trompés</option><option>nous nous étions trompées</option><option>nous avions se trompé</option><option>nous étions trompé</option></select></div>
+</div>
+<button onclick="checkMany({'pp1':'elle était partie','pp2':'ils avaient oublié','pp3':['nous nous étions trompés','nous nous étions trompées']},'fb-pp')">Vérifier</button><div class="feedback" id="fb-pp"></div></div>
+<div class="tip"><strong>Maintenant :</strong> compare tes réponses avec la fiche mémo juste après. Repère les points que tu dois revoir avant de continuer.</div>
+<button type="button" class="secondary" onclick="resetSection('comprendre')">Réinitialiser cette partie</button>
+</section>
+
+<section class="card" id="theorie">
+<div class="sectionno">Fiche mémo · À consulter pendant les exercices et à la maison</div><h2>Le plus-que-parfait : rappel de la formation</h2>
+<p>Le <strong>plus-que-parfait</strong> exprime une action passée qui s’est déroulée <strong>avant une autre action passée</strong>. On l’utilise pour revenir en arrière dans un récit.</p>
+<div class="note"><strong>Exemple :</strong> Quand Julie est arrivée au restaurant, ses amis étaient déjà partis.<br><span class="small">1. Les amis sont partis. 2. Julie est arrivée. Le départ est antérieur à l’arrivée.</span></div>
+<h3>Comment le former ?</h3>
+<p><strong>Auxiliaire avoir ou être à l’imparfait + participe passé.</strong></p>
+<div class="grid">
+<div class="mini"><strong>AVOIR à l’imparfait</strong><br>j’avais · tu avais · il/elle avait<br>nous avions · vous aviez · ils/elles avaient</div>
+<div class="mini"><strong>ÊTRE à l’imparfait</strong><br>j’étais · tu étais · il/elle était<br>nous étions · vous étiez · ils/elles étaient</div>
+</div>
+<table><tr><th>Infinitif</th><th>Participe passé</th><th>Plus-que-parfait</th></tr>
+<tr><td>oublier</td><td>oublié</td><td>j’avais oublié</td></tr><tr><td>prendre</td><td>pris</td><td>elle avait pris</td></tr><tr><td>arriver</td><td>arrivé</td><td>nous étions arrivés</td></tr><tr><td>partir</td><td>parti</td><td>ils étaient partis</td></tr></table>
+<div class="tip"><strong>Attention à l’accord :</strong> avec les verbes conjugués avec <em>être</em> comme <em>partir</em> et <em>arriver</em>, le participe passé s’accorde avec le sujet : <em>Elle était partie</em>, <em>Ils étaient arrivés</em>. Avec <em>avoir</em>, il ne s’accorde pas avec le sujet : <em>Elle avait oublié</em>.</div><div class="tip"><strong>Deux points utiles :</strong><ul><li>Avec <em>avoir</em>, le participe passé peut s’accorder avec le COD placé avant le verbe : <em>Les clés que j’avais laissées.</em></li><li>À la forme négative, <em>ne… pas</em> encadre l’auxiliaire : <em>Je n’avais pas compris.</em> Avec un verbe pronominal, le pronom se place avant l’auxiliaire : <em>Elle ne s’était pas trompée.</em> L’accord des verbes pronominaux dépend toutefois de leur construction : <em>Elle s’était lavé les mains</em>, mais <em>Elle s’était rendu compte de son erreur</em>.</li></ul></div>
+<h3>Compare les trois temps</h3>
+<div class="grid">
+<div class="mini"><strong>Imparfait</strong><br>Je <em>préparais</em> le dîner.<br><span class="small">Le décor, l’habitude, une action en cours.</span></div>
+<div class="mini"><strong>Passé composé</strong><br>Le téléphone <em>a sonné</em>.<br><span class="small">Un événement, une action terminée.</span></div>
+<div class="mini"><strong>Plus-que-parfait</strong><br>J’<em>avais oublié</em> d’acheter du pain.<br><span class="small">Une action antérieure à un autre moment passé.</span></div>
+</div>
+</section>
+
+<section class="card" id="former">
+<div class="sectionno">03 · Construire la forme</div><h2>Fabrique le plus-que-parfait</h2>
+<p>Complète avec l’auxiliaire à l’imparfait et le participe passé correct.</p>
+<div class="question"><strong>1. Hier, j’________ (oublier) mon portefeuille à la maison.</strong><input id="f1" type="text" placeholder="Écris la phrase complète."><div class="small">Écris la phrase complète.</div></div>
+<div class="question"><strong>2. Elles ________ (partir) avant la fin du film.</strong><input id="f2" type="text" placeholder="Écris la phrase complète."></div>
+<div class="question"><strong>3. Tu ________ (ne pas comprendre) le message.</strong><input id="f3" type="text" placeholder="Écris la phrase complète."></div>
+<div class="question"><strong>4. Nous ________ (se tromper) d’adresse.</strong><input id="f4" type="text" placeholder="Écris la phrase complète."></div>
+<button onclick="checkText(['f1','f2','f3','f4'],[['j’avais oublié','avais oublié'],['elles étaient parties','étaient parties'],['tu n’avais pas compris','n’avais pas compris'],['nous nous étions trompés','nous nous étions trompées']],'fb-forms')">Vérifier les réponses</button>
+<div class="feedback" id="fb-forms"></div>
+<div class="tip"><strong>À l’oral :</strong> explique pourquoi on utilise <em>être</em> dans les phrases 2 et 4. Attention : avec les verbes pronominaux, on utilise également être.</div>
+<button type="button" class="secondary" onclick="resetSection('former')">Réinitialiser cette partie</button>
+</section>
+
+<section class="card" id="temps">
+<div class="sectionno">04 · Choisir le bon temps</div><h2>Imparfait, passé composé ou plus-que-parfait ?</h2>
+<p>Lis chaque phrase et choisis la forme qui convient au contexte.</p>
+<div class="question"><strong>1. Quand je suis arrivée, Paul ______ déjà.</strong><select id="t1"><option value="">— Choisir —</option><option>partait</option><option>est parti</option><option>était parti</option></select></div>
+<div class="question"><strong>2. Je ______ quand mon amie m’a appelée.</strong><select id="t2"><option value="">— Choisir —</option><option>dormais</option><option>avais dormi</option><option>ai dormi</option></select></div>
+<div class="question"><strong>3. Elle était furieuse parce qu’il ______ son anniversaire.</strong><select id="t3"><option value="">— Choisir —</option><option>oubliait</option><option>avait oublié</option><option>a oublié</option></select></div>
+<div class="question"><strong>4. Nous ______ au restaurant quand nous avons compris notre erreur.</strong><select id="t4"><option value="">— Choisir —</option><option>étions déjà arrivés</option><option>sommes déjà arrivés</option><option>arrivions déjà</option></select></div>
+<div class="question"><strong>5. Il ______ très froid et il pleuvait.</strong><select id="t5"><option value="">— Choisir —</option><option>avait fait</option><option>a fait</option><option>faisait</option></select></div>
+<div class="question"><strong>6. J’ai cherché mes clés partout : je les ______ dans mon sac.</strong><select id="t6"><option value="">— Choisir —</option><option>avais laissées</option><option>laissais</option><option>ai laissé</option></select></div>
+<button onclick="checkMany({'t1':'était parti','t2':'dormais','t3':'avait oublié','t4':['étions déjà arrivés','étions déjà arrivées'],'t5':'faisait','t6':'avais laissées'},'fb-times')">Vérifier</button><div class="feedback" id="fb-times"></div>
+<button type="button" class="secondary" onclick="resetSection('temps')">Réinitialiser cette partie</button>
+</section>
+
+<section class="card" id="lexique">
+<div class="sectionno">05 · Vocabulaire thématique</div><h2>Les situations embarrassantes</h2>
+<p>Les mots soulignés en violet sont interactifs : clique dessus pour voir la traduction et un exemple. Essaie de deviner le sens avant d’ouvrir la fiche !</p>
+<div class="vocab-toolbar"><span class="small">Mode défi : essaie de deviner le sens avant d’ouvrir la fiche d’un mot.</span></div>
+<h3>Oublier, confondre, se tromper</h3>
+<div class="wordlist">
+<button class="word" onclick="showWord('oublier')">oublier</button><button class="word" onclick="showWord('confondre')">confondre</button><button class="word" onclick="showWord('se tromper')">se tromper</button><button class="word" onclick="showWord('mélanger')">mélanger</button><button class="word" onclick="showWord('égarer')">égarer</button>
+</div>
+<h3>Les imprévus et les problèmes</h3><p class="small">À retenir : <em>rater le bus</em> et <em>manquer le bus</em> sont tous les deux possibles. <em>Manquer de temps</em> signifie « ne pas avoir assez de temps » ; <em>manquer à quelqu’un</em> signifie « être absent et lui manquer ».</p>
+<div class="wordlist">
+<button class="word" onclick="showWord('rater')">rater</button><button class="word" onclick="showWord('manquer')">manquer</button><button class="word" onclick="showWord('être en retard')">être en retard</button><button class="word" onclick="showWord('annuler')">annuler</button><button class="word" onclick="showWord('se rendre compte')">se rendre compte</button>
+</div>
+<h3>Les émotions et les réactions</h3>
+<div class="wordlist">
+<button class="word" onclick="showWord('être gêné(e)')">être gêné(e)</button><button class="word" onclick="showWord('avoir honte')">avoir honte</button><button class="word" onclick="showWord('être soulagé(e)')">être soulagé(e)</button><button class="word" onclick="showWord('être furieux / furieuse')">être furieux / furieuse</button><button class="word" onclick="showWord('s’excuser')">s’excuser</button>
+</div>
+<h3>Les expressions utiles</h3>
+<div class="wordlist">
+<button class="word" onclick="showWord('à cause de')">à cause de</button><button class="word" onclick="showWord('heureusement')">heureusement</button><button class="word" onclick="showWord('finalement')">finalement</button><button class="word" onclick="showWord('faire exprès')">faire exprès</button><button class="word" onclick="showWord('ne pas faire attention')">ne pas faire attention</button>
+</div>
+<div class="note"><strong>Mini-défi lexical :</strong> choisis cinq expressions et invente oralement une phrase pour chacune. Essaie d’utiliser au moins deux verbes au plus-que-parfait.</div>
+<h3>Associe le mot à sa définition</h3>
+<div class="question"><strong>1. Égarer quelque chose, c’est…</strong><select id="l1"><option value="">— Choisir —</option><option>perdre quelque chose sans savoir où</option><option>annuler un rendez-vous</option><option>être très content</option></select></div>
+<div class="question"><strong>2. Être gêné(e), c’est…</strong><select id="l2"><option value="">— Choisir —</option><option>être embarrassé(e), mal à l’aise</option><option>être en avance</option><option>être malade</option></select></div>
+<div class="question"><strong>3. Se rendre compte de quelque chose, c’est…</strong><select id="l3"><option value="">— Choisir —</option><option>comprendre ou remarquer quelque chose</option><option>oublier volontairement</option><option>raconter une histoire</option></select></div>
+<div class="question"><strong>4. Faire exprès, c’est…</strong><select id="l4"><option value="">— Choisir —</option><option>par accident</option><option>volontairement</option><option>rapidement</option></select></div>
+<button onclick="checkMany({'l1':'perdre quelque chose sans savoir où','l2':'être embarrassé(e), mal à l’aise','l3':'comprendre ou remarquer quelque chose','l4':'volontairement'},'fb-lex')">Vérifier</button><div class="feedback" id="fb-lex"></div>
+<button type="button" class="secondary" onclick="resetSection('lexique')">Réinitialiser les exercices</button>
+</section>
+
+<section class="card" id="histoires">
+<div class="sectionno">06 · Comprendre et reconstruire</div><h2>Une soirée… inoubliable</h2>
+<p>Lis l’histoire. Clique sur les mots violets si tu as besoin d’aide.</p>
+<p>Samedi soir, Clara organisait un dîner chez elle. Elle était très stressée parce qu’elle avait invité des collègues qu’elle ne connaissait pas bien. Le matin, elle avait fait les courses, mais elle <span class="vocab" tabindex="0" role="button" onclick="showWord('oublier')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showWord('oublier')}">avait oublié</span> d’acheter du pain. En rentrant, elle <span class="vocab" tabindex="0" role="button" onclick="showWord('se rendre compte')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showWord('se rendre compte')}">s’est rendu compte</span> qu’elle avait aussi perdu ses clés. Heureusement, son voisin était à la maison et lui a ouvert la porte. Quand les invités sont arrivés, Clara préparait encore le dessert. Elle était tellement occupée qu’elle a servi le café avant le plat principal ! Tout le monde a ri. Clara était <span class="vocab" tabindex="0" role="button" onclick="showWord('être gêné(e)')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showWord('être gêné(e)')}">gênée</span>, mais ses invités ont trouvé la soirée très drôle.</p>
+<div class="question"><strong>1. Pourquoi Clara était-elle stressée ?</strong><label class="opt"><input type="radio" name="story1" value="a">Parce qu’elle avait invité des collègues qu’elle connaissait peu.</label><label class="opt"><input type="radio" name="story1" value="b">Parce qu’elle n’aimait pas cuisiner.</label><label class="opt"><input type="radio" name="story1" value="c">Parce qu’elle avait oublié l’adresse.</label></div>
+<div class="question"><strong>2. Qu’avait-elle oublié d’acheter ?</strong><input id="story2" type="text" placeholder="Écris ta réponse."></div>
+<div class="question"><strong>3. Pourquoi son voisin a-t-il pu l’aider ?</strong><textarea id="story3" placeholder="Explique pourquoi le voisin a pu l’aider."></textarea></div>
+<div class="question"><strong>4. Vrai ou faux ? Clara avait déjà terminé le dessert quand les invités sont arrivés.</strong><label class="opt"><input type="radio" name="story4" value="v">Vrai</label><label class="opt"><input type="radio" name="story4" value="f">Faux</label><button type="button" onclick="checkRadio('story4','f','fb-story4','Exact : elle préparait encore le dessert quand les invités sont arrivés.')">Vérifier la question 4</button><div class="feedback" id="fb-story4"></div></div>
+<div class="question"><strong>5. Trouve dans le texte deux actions antérieures à l’arrivée des invités.</strong><textarea id="story5" placeholder="Note deux actions antérieures à l’arrivée des invités."></textarea></div>
+<button onclick="checkRadio('story1','a','fb-story1','Oui : elle ne connaissait pas bien ses collègues.')">Vérifier la question 1</button><div class="feedback" id="fb-story1"></div>
+<button type="button" class="secondary" onclick="revealStoryAnswers()">Afficher les réponses possibles après avoir répondu</button><div class="feedback" id="fb-story-gate"></div><div class="answer" id="storyAnswers">2. Elle avait oublié d’acheter du pain. 3. Parce que son voisin était chez lui et lui a ouvert la porte. 4. Faux : elle préparait encore le dessert. 5. Elle avait fait les courses ; elle avait oublié le pain ; elle avait perdu ses clés.</div>
+<h3>Remets les événements dans l’ordre</h3>
+<p>Numérote de 1 à 4, du premier événement au dernier.</p>
+<div class="grid">
+<div class="mini">Elle a servi le café avant le plat.<select id="seq1"><option value="">—</option><option>1</option><option>2</option><option>3</option><option>4</option></select></div>
+<div class="mini">Elle avait fait les courses.<select id="seq2"><option value="">—</option><option>1</option><option>2</option><option>3</option><option>4</option></select></div>
+<div class="mini">Les invités sont arrivés.<select id="seq3"><option value="">—</option><option>1</option><option>2</option><option>3</option><option>4</option></select></div>
+<div class="mini">Elle avait perdu ses clés.<select id="seq4"><option value="">—</option><option>1</option><option>2</option><option>3</option><option>4</option></select></div>
+</div>
+<button onclick="checkMany({'seq1':'4','seq2':'1','seq3':'3','seq4':'2'},'fb-seq')">Vérifier l’ordre</button><div class="feedback" id="fb-seq"></div>
+<button type="button" class="secondary" onclick="resetSection('histoires')">Réinitialiser cette partie</button>
+</section>
+
+<section class="card" id="corriger">
+<div class="sectionno">07 · Repérer et corriger</div><h2>Il y a une erreur dans chaque phrase</h2>
+<p>Réécris chaque phrase correctement. Fais attention à l’auxiliaire, au participe passé et à l’accord.</p>
+<div class="question"><strong>1. Quand je suis arrivé(e), elle a déjà quitté la maison.</strong><input id="err1" type="text" placeholder="Réécris la phrase correctement."></div>
+<div class="question"><strong>2. Ils avaient allé au mauvais restaurant.</strong><input id="err2" type="text" placeholder="Réécris la phrase correctement."></div>
+<div class="question"><strong>3. Nous étions oublié nos billets.</strong><input id="err3" type="text" placeholder="Réécris la phrase correctement."></div>
+<div class="question"><strong>4. Elle s’avait trompée d’horaire.</strong><input id="err4" type="text" placeholder="Réécris la phrase correctement."></div>
+<button type="button" class="secondary" onclick="revealAfterAttempt(['err1','err2','err3','err4'],'errorAnswers','fb-error-gate')">Afficher le corrigé après avoir répondu</button><div class="feedback" id="fb-error-gate"></div>
+<div class="answer" id="errorAnswers">1. Quand je suis arrivé(e), elle avait déjà quitté la maison. 2. Ils étaient allés au mauvais restaurant. 3. Nous avions oublié nos billets. 4. Elle s’était trompée d’horaire.</div>
+<button type="button" class="secondary" onclick="resetSection('corriger')">Réinitialiser cette partie</button>
+</section>
+
+<section class="card" id="transformer">
+<div class="sectionno">08 · Transformer</div><h2>Relie les deux événements</h2>
+<p>Réunis les deux phrases en utilisant le plus-que-parfait. Plusieurs formulations sont possibles.</p>
+<div class="question"><strong>Exemple :</strong> Je suis arrivé à la gare. Le train est parti.<br><em>Quand je suis arrivé à la gare, le train était déjà parti.</em></div>
+<div class="question"><strong>1. Elle a téléphoné à son amie. Son amie est déjà sortie.</strong><textarea id="tr1" placeholder="Rédige une phrase complète."></textarea></div>
+<div class="question"><strong>2. Nous sommes arrivés au cinéma. Le film a commencé.</strong><textarea id="tr2" placeholder="Rédige une phrase complète."></textarea></div>
+<div class="question"><strong>3. Il a voulu payer. Il a oublié son portefeuille chez lui.</strong><textarea id="tr3" placeholder="Rédige une phrase complète."></textarea></div>
+<div class="question"><strong>4. Tu as envoyé le message. Tu t’es trompé de destinataire.</strong><textarea id="tr4" placeholder="Rédige une phrase complète."></textarea></div>
+<button type="button" class="secondary" onclick="resetSection('transformer')">Réinitialiser cette partie</button>
+</section>
+
+<section class="card" id="production">
+<div class="sectionno">09 · Produire et raconter</div><h2>À toi de raconter !</h2>
+<div class="note"><strong>Mission 1 — Une journée catastrophique</strong><br>Imagine une journée où tout s’est mal passé. Raconte ce qui est arrivé et explique ce qui s’était passé avant chaque problème.</div>
+<p>Utilise au minimum :</p>
+<ul><li>3 verbes au plus-que-parfait ;</li><li>3 verbes au passé composé ;</li><li>2 verbes à l’imparfait ;</li><li>5 mots ou expressions du vocabulaire thématique.</li></ul>
+<textarea id="productionText" style="min-height:150px" placeholder="Raconte ta situation ici."></textarea>
+<div class="tip"><strong>Mission 2 — À l’oral : « Tu l’as fait exprès ? »</strong><br>Choisis une situation et explique-la à ton professeur :<br>• Tu as envoyé un message privé dans un groupe professionnel.<br>• Tu es allé(e) à un rendez-vous le mauvais jour.<br>• Tu as appelé quelqu’un par le mauvais prénom.<br>• Tu as apporté un cadeau déjà offert à cette personne.<br><br>Explique ce qui s’était passé, comment tu as réagi et comment la situation s’est terminée.</div>
+<h3>Auto-évaluation</h3>
+<label class="opt"><input type="checkbox">Je sais expliquer quand utiliser le plus-que-parfait.</label>
+<label class="opt"><input type="checkbox">Je sais former le plus-que-parfait avec avoir et être.</label>
+<label class="opt"><input type="checkbox">Je peux distinguer imparfait, passé composé et plus-que-parfait.</label>
+<label class="opt"><input type="checkbox">Je peux raconter une situation embarrassante en utilisant ces trois temps.</label>
+<button type="button" class="secondary" onclick="resetSection('production')">Effacer ma production</button>
+</section>
+<footer>Fin de l’activité · Très bien ! Continue à raconter, expliquer et préciser la chronologie.</footer>
+<section class="card" id="resultat-eleve">
+<div class="sectionno">Récapitulatif</div>
+<h2>Récupérer le travail de l’élève</h2>
+<p>Copie toutes les réponses saisies dans l’activité pour les envoyer au professeur.</p>
+<button type="button" onclick="copyStudentResults()">Copier les réponses de l’élève</button>
+<span id="copyStatus" class="small" role="status" aria-live="polite"></span>
+</section>
+</main>
+
+<div id="vocabPanel" role="dialog" aria-live="polite">
+<button class="close" onclick="closeWord()">✕</button>
+<div class="eyebrow" id="wordType">Vocabulaire</div><div id="wordTitle" style="font-size:19px;font-weight:750;margin-top:5px"></div>
+<div class="translation" id="wordTranslation"></div>
+<div class="small" id="wordNote"></div>
+<div class="example" id="wordExample"></div>
+</div>
+<script>
+const vocab={
+'oublier':{type:'Verbe',tr:'забывать',note:'oublier quelque chose / de faire quelque chose',ex:'J’avais oublié de prévenir mes amis. — Я забыл(а) предупредить друзей.'},
+'confondre':{type:'Verbe',tr:'путать, перепутать',note:'confondre A et B',ex:'J’ai confondu les deux adresses. — Я перепутал(а) два адреса.'},
+'se tromper':{type:'Verbe pronominal',tr:'ошибаться, ошибиться',note:'se tromper de + nom',ex:'Elle s’était trompée de jour. — Она перепутала день.'},
+'mélanger':{type:'Verbe',tr:'смешивать; путать',note:'mélanger deux choses',ex:'J’ai mélangé les deux dossiers. — Я перепутал(а) две папки.'},
+'égarer':{type:'Verbe',tr:'потерять, затерять',note:'égarer ses clés / un document',ex:'Il avait égaré son passeport. — Он потерял паспорт.'},
+'rater':{type:'Verbe',tr:'пропустить; не успеть; провалить',note:'rater le bus, un rendez-vous, un examen',ex:'J’ai raté le dernier métro. — Я пропустил(а) последнее метро.'},
+'manquer':{type:'Verbe',tr:'не хватать; пропустить',note:'manquer de temps = не хватать времени ; manquer le train = не успеть на поезд ; manquer à quelqu’un = отсутствовать и не хватать кому-либо. «Manquer le train» и «rater le train» оба корректны.',ex:'Nous avions manqué le début du spectacle. — Мы пропустили начало представления.'},
+'être en retard':{type:'Expression',tr:'опаздывать, опоздать',note:'être en retard à un rendez-vous / être en retard pour le travail',ex:'Il était en retard au rendez-vous. — Он опаздывал на встречу.'},
+'annuler':{type:'Verbe',tr:'отменять, отменить',note:'annuler un rendez-vous / une réservation',ex:'Le restaurant avait annulé notre réservation. — Ресторан отменил нашу бронь.'},
+'se rendre compte':{type:'Expression verbale',tr:'осознавать, замечать',note:'se rendre compte de quelque chose / que…',ex:'Elle s’est rendu compte de son erreur. — Она осознала свою ошибку.'},
+'être gêné(e)':{type:'Expression',tr:'смущаться; чувствовать неловкость',note:'être gêné(e) par quelque chose',ex:'J’étais très gênée devant mes collègues. — Мне было очень неловко перед коллегами.'},
+'avoir honte':{type:'Expression',tr:'испытывать стыд, стесняться',note:'avoir honte de quelque chose',ex:'Il avait honte de son comportement. — Ему было стыдно за своё поведение.'},
+'être soulagé(e)':{type:'Expression',tr:'испытывать облегчение',note:'être soulagé(e) de + infinitif / que…',ex:'J’étais soulagée : j’avais retrouvé mes clés. — Я испытала облегчение: я нашла ключи.'},
+'être furieux / furieuse':{type:'Adjectif',tr:'быть в ярости, очень злиться',note:'furieux contre quelqu’un / à cause de quelque chose',ex:'Elle était furieuse parce qu’il avait menti. — Она была в ярости, потому что он солгал.'},
+'s’excuser':{type:'Verbe pronominal',tr:'извиняться',note:'s’excuser auprès de quelqu’un / pour quelque chose',ex:'Il s’est excusé pour son retard. — Он извинился за опоздание.'},
+'à cause de':{type:'Locution prépositive',tr:'из-за (обычно причина с негативным оттенком)',note:'à cause de + nom',ex:'Le dîner a commencé en retard à cause d’un problème de transport. — Ужин начался поздно из-за проблемы с транспортом.'},
+'heureusement':{type:'Adverbe',tr:'к счастью',note:'souvent au début ou au milieu de la phrase',ex:'Heureusement, mon voisin était chez lui. — К счастью, мой сосед был дома.'},
+'finalement':{type:'Adverbe',tr:'в конце концов, в итоге',note:'introduit le résultat final',ex:'Finalement, tout s’est bien passé. — В итоге всё прошло хорошо.'},
+'faire exprès':{type:'Expression',tr:'делать специально, нарочно',note:'faire exprès de + infinitif',ex:'Tu l’as fait exprès ? — Ты сделал(а) это специально?'},
+'ne pas faire attention':{type:'Expression',tr:'не обращать внимания; быть невнимательным',note:'faire attention à quelque chose',ex:'Je n’avais pas fait attention à l’heure. — Я не обратил(а) внимания на время.'}
+};
+function showWord(w){const d=vocab[w];if(!d)return;document.getElementById('wordTitle').textContent=w;document.getElementById('wordType').textContent=d.type;document.getElementById('wordTranslation').textContent=d.tr;document.getElementById('wordNote').textContent=d.note;document.getElementById('wordExample').textContent=d.ex;document.getElementById('vocabPanel').classList.add('open')}
+function closeWord(){document.getElementById('vocabPanel').classList.remove('open')}
+
+function feedback(id,ok,msg){const el=document.getElementById(id);el.className='feedback show '+(ok?'good':'bad');el.textContent=msg}
+
+function checkRadio(name,correct,id,msg){
+ const v=document.querySelector('input[name="'+name+'"]:checked');
+ if(!v){feedback(id,false,'Choisis une réponse avant de vérifier.');return}
+ feedback(id,v.value===correct,v.value===correct?msg:'Pas encore. Relis la question et réessaie.');
+}
+function norm(s){return s.toLowerCase().trim().replace(/[’']/g,"'").replace(/[.,!?]/g,'').replace(/\s+/g,' ')}
+function checkText(ids,answers,fb){
+ const values=ids.map(id=>document.getElementById(id).value);
+ if(values.some(v=>!v.trim())){feedback(fb,false,'Complète toutes les réponses avant de vérifier.');return}
+ let n=0;
+ ids.forEach((id,i)=>{const v=norm(document.getElementById(id).value);if(answers[i].some(a=>norm(a)===v))n++});
+ feedback(fb,n===ids.length,'Résultat : '+n+' / '+ids.length+'. '+(n===ids.length?'Excellent !':'Relis les formes attendues et corrige tes réponses.'));
+}
+function checkMany(key,fb){
+ const entries=Object.entries(key);
+ if(entries.some(([id])=>!document.getElementById(id).value)){feedback(fb,false,'Complète toutes les réponses avant de vérifier.');return}
+ let n=0,total=entries.length;
+ for(const [id,a] of entries){const expected=Array.isArray(a)?a:[a];if(expected.includes(document.getElementById(id).value))n++}
+ feedback(fb,n===total,'Résultat : '+n+' / '+total+'. '+(n===total?'Très bien !':'Relis les réponses incorrectes et essaie encore.'));
+}
+function revealAfterAttempt(ids,answerId,feedbackId){
+ if(ids.some(id=>!document.getElementById(id).value.trim())){
+  feedback(feedbackId,false,'Réponds à toutes les questions avant de consulter le corrigé.');
+  return;
+ }
+ document.getElementById(answerId).classList.toggle('show');
+ const shown=document.getElementById(answerId).classList.contains('show');
+ feedback(feedbackId,true,shown?'Voici le corrigé. Compare-le avec tes réponses.':'Le corrigé est masqué.');
+}
+function revealStoryAnswers(){
+ const complete=document.querySelector('input[name="story1"]:checked')
+  && document.getElementById('story2').value.trim()
+  && document.getElementById('story3').value.trim()
+  && document.querySelector('input[name="story4"]:checked')
+  && document.getElementById('story5').value.trim();
+ if(!complete){feedback('fb-story-gate',false,'Réponds aux cinq questions avant de consulter les réponses possibles.');return}
+ document.getElementById('storyAnswers').classList.toggle('show');
+ const shown=document.getElementById('storyAnswers').classList.contains('show');
+ feedback('fb-story-gate',true,shown?'Voici des réponses possibles. Compare-les avec tes propres réponses.':'Les réponses sont masquées.');
+}
+function resetSection(id){
+ const section=document.getElementById(id);
+ if(!section)return;
+ section.querySelectorAll('input,select,textarea').forEach(el=>{
+  if(el.type==='radio'||el.type==='checkbox')el.checked=false;
+  else el.value='';
+ });
+ section.querySelectorAll('.feedback').forEach(el=>{el.className='feedback';el.textContent=''});
+ section.querySelectorAll('.answer').forEach(el=>el.classList.remove('show'));
+ updateProgress();
+}
+function getStudentResults(){
+ const lines=['LES SITUATIONS EMBARRASSANTES — RÉPONSES DE L’ÉLÈVE',''];
+ document.querySelectorAll('main section.card:not(#resultat-eleve)').forEach(section=>{
+  const sectionTitle=section.querySelector('h2')?.textContent.trim()||'Activité';
+  const answers=[];
+  section.querySelectorAll('.question').forEach((q,index)=>{
+   const prompt=q.querySelector('strong')?.textContent.trim()||('Question '+(index+1));
+   const values=[];
+   q.querySelectorAll('input,select,textarea').forEach(el=>{
+    if(el.type==='radio'){
+     if(el.checked){const label=el.closest('label');values.push(label?label.textContent.trim():el.value)}
+    }else if(el.type==='checkbox'){
+     if(el.checked){const label=el.closest('label');values.push(label?label.textContent.trim():el.value||'Oui')}
+    }else if(el.tagName==='SELECT'){
+     if(el.value)values.push(el.options[el.selectedIndex]?.textContent.trim()||el.value);
+    }else if(el.value.trim()){
+     values.push(el.value.trim());
+    }
+   });
+   if(values.length)answers.push(prompt+'\n'+values.map(v=>'• '+v).join('\n'));
+  });
+  const production=section.querySelector('#productionText');
+  if(production?.value.trim())answers.push('Production écrite\n'+production.value.trim());
+  if(answers.length){lines.push(sectionTitle.toUpperCase(),...answers,'');}
+ });
+ return lines.length>2?lines.join('\n'):'Aucune réponse n’a encore été saisie.';
+}
+async function copyStudentResults(){
+ const text=getStudentResults();
+ const status=document.getElementById('copyStatus');
+ try{
+  await navigator.clipboard.writeText(text);
+  status.textContent=' Copié ! Tu peux coller le résultat dans ton message.';
+ }catch(error){
+  const temp=document.createElement('textarea');
+  temp.value=text;temp.style.position='fixed';temp.style.opacity='0';
+  document.body.appendChild(temp);temp.select();
+  const ok=document.execCommand('copy');temp.remove();
+  status.textContent=ok?' Copié ! Tu peux coller le résultat dans ton message.':' La copie automatique a échoué. Essaie depuis un navigateur sécurisé.';
+ }
+}
+function updateProgress(){
+ const fields=[...document.querySelectorAll('input,select,textarea')];
+ const filled=fields.filter(x=>(x.type==='checkbox'||x.type==='radio')?x.checked:x.value.trim()).length;
+ document.getElementById('progressBar').style.width=Math.min(100,filled/Math.max(fields.length,1)*100)+'%';
+}
+document.addEventListener('input',updateProgress);
+document.addEventListener('change',updateProgress);
+</script>
 </body>
 </html>
