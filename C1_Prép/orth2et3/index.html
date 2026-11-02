@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le participe passé — Entraînement B2/C1</title>
+<style>
+:root{--bg:#F4F0E8;--wine:#5A1F2B;--ink:#363938;--muted:#77766f;--card:#FFFCF6;--line:#ded8cc;--green:#286447;--green-bg:#eaf3ec;--red:#9c3737;--red-bg:#f8eaea;--gold:#eee5d2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:940px;margin:auto;padding:26px 18px 64px}
+header{padding:24px 2px 25px;border-bottom:2px solid var(--wine);margin-bottom:22px}
+.kicker{color:var(--wine);font-size:.75rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+h1,h2{font-family:Georgia,"Times New Roman",serif;font-weight:600}
+h1{font-size:clamp(2rem,6vw,3.3rem);line-height:1.06;color:var(--wine);margin:9px 0}
+header p{color:var(--muted);margin:8px 0}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.pills span{font-size:.78rem;background:#e9e2d6;border-radius:30px;padding:5px 10px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
+button{font:inherit;cursor:pointer;border:1px solid var(--wine);border-radius:8px;padding:10px 15px;background:var(--wine);color:white;font-weight:650}
+button.secondary{background:transparent;color:var(--wine)}
+button.small{font-size:.8rem;padding:6px 10px;border-color:var(--line);color:var(--wine);background:transparent}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #b88d91;outline-offset:2px}
+h2{font-size:1.55rem;color:var(--wine);margin:0}
+.exercise{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:20px;margin:18px 0;box-shadow:0 2px 8px #34271b08}
+.ex-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:8px}
+.ex-head p{color:var(--muted);font-size:.9rem;margin:5px 0}
+.score{font-size:.82rem;color:var(--muted);white-space:nowrap}
+.q{padding:13px 0;border-top:1px solid #ece7de}
+.q:first-of-type{border-top:0}
+.prompt{margin-bottom:8px}
+.answerline{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+input[type=text]{width:min(100%,390px);min-width:170px;padding:9px 11px;border:1px solid #cfc8bc;border-radius:7px;background:white;color:var(--ink);font:inherit}
+input.wide{width:min(100%,650px)}
+.status{font-size:.83rem;font-weight:700;margin-top:7px}
+.status.ok{color:var(--green)}.status.bad{color:var(--red)}.status.manual{color:#86621d}.status.empty{color:var(--muted)}
+.inline-q{display:inline-flex;align-items:center;gap:4px;vertical-align:middle;border:0!important;padding:0!important;margin:2px!important;background:transparent!important;box-shadow:none!important}.inline-q input{min-width:72px;width:92px;padding:5px 7px;font-size:.92rem}.inline-q .small{padding:4px 6px}.inline-q .status{width:100%;font-size:.72rem}.q.correct{background:linear-gradient(90deg,var(--green-bg),transparent);padding-left:10px;border-radius:7px}
+.q.incorrect{background:linear-gradient(90deg,var(--red-bg),transparent);padding-left:10px;border-radius:7px}
+.q.manual{background:linear-gradient(90deg,#f5efdf,transparent);padding-left:10px;border-radius:7px}
+.expected{font-size:.88rem;color:var(--muted);margin-top:5px}
+.ex-footer{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.report{display:none;background:var(--card);border:2px solid var(--wine);border-radius:13px;padding:20px;margin-top:24px}
+.report.show{display:block}
+.report h2{margin-bottom:8px}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.stat{background:#eee8dd;border-radius:8px;padding:8px 12px;font-size:.9rem}
+.note{background:#eee8dd;padding:12px 14px;border-radius:8px;color:#55534e;font-size:.9rem;margin:14px 0}
+footer{color:var(--muted);font-size:.8rem;margin-top:30px;border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:600px){main{padding:16px 12px 45px}.exercise{padding:15px}.ex-head{display:block}.score{display:block;margin-top:5px}.answerline{align-items:stretch}input[type=text]{width:100%}}
+@media print{body{background:white}main{max-width:none;padding:0}.toolbar,.small,.ex-footer button{display:none!important}.exercise{break-inside:avoid;box-shadow:none}.report{display:block!important}}
+
+.theory-intro{margin:28px 0 16px}
+.theory-intro h2{font-size:1.9rem;margin:6px 0;color:var(--wine)}
+.theory-intro>p{color:var(--muted);max-width:780px}
+.theory-card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:21px 23px;margin:15px 0}
+.theory-card h3{font:600 1.35rem Georgia,serif;color:var(--wine);margin:0 0 12px}
+.theory-card h4{font-size:1rem;color:var(--wine);margin:19px 0 5px}
+.theory-card p{margin:8px 0}
+.theory-card ul,.theory-card ol{padding-left:22px}
+.theory-card li{margin:6px 0}
+.theory-card table{width:100%;border-collapse:collapse;margin:12px 0}
+.theory-card th,.theory-card td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line)}
+.theory-card th{background:#f0ebe2}
+.theory-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:13px 0}
+.theory-grid>div{padding:12px;background:#f3eee5;border-radius:8px}
+.theory-grid p{margin:5px 0}
+.example{font-family:Georgia,serif;color:#4d3438;background:#f7f1e9;padding:9px 12px;border-radius:7px}
+.theory-note{background:#eee8dd;border-left:3px solid var(--wine);padding:11px 13px;margin:13px 0;border-radius:0 7px 7px 0}
+
+</style>
+</head>
+<body>
+<main>
+<header>
+ <div class="kicker">Grammaire · Niveau B2–C1</div>
+ <h1>Le participe passé</h1>
+ <p>Entraînement interactif · formes, accords et cas particuliers</p>
+ <div class="pills"><span>6 exercices</span><span>Correction automatique</span><span>Résultats copiables</span></div>
+</header>
+
+<div class="note">Complète chaque réponse en français. Clique sur <b>Vérifier mes réponses</b> pour obtenir un retour sur tes réponses. Les exercices de production libre seront signalés « à vérifier » et devront être corrigés avec ton professeur. À la fin de chaque exercice, tu peux copier toutes tes réponses en une seule fois.</div>
+<div class="toolbar">
+ <button id="checkAll">Vérifier mes réponses</button>
+ <button class="secondary" id="copyReportTop">Copier le rapport</button>
+ <button class="secondary" id="resetAll">Recommencer</button>
+</div>
+
+
+<section class="theory" aria-labelledby="theory-title">
+ <div class="theory-intro">
+  <div class="kicker">Rappel de grammaire</div>
+  <h2 id="theory-title">Comprendre l’accord du participe passé</h2>
+  <p>Le participe passé sert à construire les temps composés et la voix passive. Son accord dépend de la construction grammaticale de la phrase : l’auxiliaire, la fonction du complément et sa place sont essentiels.</p>
+ </div>
+
+ <article class="theory-card">
+  <h3>1. Former le participe passé</h3>
+  <p>Les participes passés ont des formes régulières, mais de nombreux verbes présentent une forme particulière qu’il faut connaître.</p>
+  <div class="theory-grid">
+   <div><b>Verbes en -er</b><p>terminaison généralement en <strong>-é</strong></p><p class="example">parler → parlé<br>arriver → arrivé</p></div>
+   <div><b>Beaucoup de verbes en -ir</b><p>terminaison généralement en <strong>-i</strong></p><p class="example">finir → fini<br>grandir → grandi</p></div>
+   <div><b>Nombreux verbes en -re / -oir</b><p>terminaison souvent en <strong>-u</strong></p><p class="example">vendre → vendu<br>voir → vu</p></div>
+  </div>
+  <h4>Ne pas confondre -i, -is et -it</h4>
+  <table><thead><tr><th>Forme masculine</th><th>Forme féminine</th><th>Infinitif</th></tr></thead><tbody>
+   <tr><td>parti</td><td>partie</td><td>partir</td></tr>
+   <tr><td>mis</td><td>mise</td><td>mettre</td></tr>
+   <tr><td>écrit</td><td>écrite</td><td>écrire</td></tr>
+  </tbody></table>
+  <p>Quelques familles à mémoriser :</p>
+  <ul>
+   <li><strong>-i :</strong> rire → ri ; suivre → suivi ; suffire → suffi ; sourire → souri.</li>
+   <li><strong>-is :</strong> prendre → pris ; mettre → mis ; apprendre → appris ; comprendre → compris ; acquérir → acquis.</li>
+   <li><strong>-it :</strong> écrire → écrit ; conduire → conduit ; traduire → traduit ; détruire → détruit ; séduire → séduit.</li>
+  </ul>
+  <p>Quelques formes particulières : résoudre → résolu ; cuire → cuit ; absoudre → absous / absoute ; dissoudre → dissous / dissoute.</p>
+  <div class="theory-note"><strong>Bénir :</strong> le participe passé est <em>béni</em>. Comme adjectif, on rencontre aussi <em>bénit / bénite</em> pour des objets consacrés : de l’eau bénite.</div>
+ </article>
+
+ <article class="theory-card">
+  <h3>2. Avec l’auxiliaire avoir</h3>
+  <p>En règle générale, le participe passé employé avec <strong>avoir</strong> ne s’accorde pas avec le sujet.</p>
+  <p class="example">Les étudiantes ont terminé leur travail.</p>
+  <p>Il s’accorde avec le <strong>complément d’objet direct (COD)</strong> lorsque celui-ci est placé avant le participe passé.</p>
+  <div class="theory-grid">
+   <div><b>COD après le verbe</b><p class="example">J’ai acheté des fleurs.</p><p>Pas d’accord.</p></div>
+   <div><b>COD avant le verbe</b><p class="example">Les fleurs que j’ai achetées.</p><p>Accord avec « que », qui reprend « les fleurs ».</p></div>
+  </div>
+  <p>Pour reconnaître le COD, pose la question <em>qui ?</em> ou <em>quoi ?</em> directement après le verbe, sans préposition.</p>
+  <div class="theory-note"><strong>COD et COI :</strong> comparez <em>Elle les a vus</em> (voir quelqu’un : COD) et <em>Elle leur a répondu</em> (répondre à quelqu’un : COI). Un COI ne commande pas l’accord.</div>
+ </article>
+
+ <article class="theory-card">
+  <h3>3. Avec l’auxiliaire être</h3>
+  <p>Avec <strong>être</strong>, le participe passé s’accorde généralement avec le sujet en genre et en nombre.</p>
+  <p class="example">Il est arrivé. · Elle est arrivée. · Ils sont arrivés. · Elles sont arrivées.</p>
+  <p>La même règle s’applique à la voix passive : le participe passé s’accorde avec le sujet grammatical.</p>
+  <p class="example">La décision a été annoncée. · Les résultats ont été publiés.</p>
+  <div class="theory-note">Le pronom <em>on</em> peut désigner un groupe précis ou avoir un sens indéfini. Lorsque <em>on</em> signifie « nous », l’accord peut refléter les personnes désignées : <em>Mon amie et moi, on est arrivées tôt.</em></div>
+ </article>
+
+ <article class="theory-card">
+  <h3>4. Avec les verbes pronominaux</h3>
+  <p>Les verbes pronominaux se construisent avec un pronom réfléchi : <em>me, te, se, nous, vous</em>. Pour faire l’accord, il faut déterminer la fonction grammaticale de ce pronom et repérer un éventuel COD.</p>
+  <h4>Le pronom réfléchi est COD</h4>
+  <p>Le sujet exerce l’action sur lui-même ou sur les autres sujets. Le participe passé s’accorde avec le sujet.</p>
+  <p class="example">Elles se sont regardées. · Ils se sont rencontrés.</p>
+  <h4>Le pronom réfléchi est COI</h4>
+  <p>Certains verbes se construisent avec la préposition <em>à</em> : parler à quelqu’un, téléphoner à quelqu’un, écrire à quelqu’un, sourire à quelqu’un. Le pronom réfléchi est alors COI et ne commande pas l’accord.</p>
+  <p class="example">Elles se sont téléphoné. · Ils se sont souri.</p>
+  <h4>Un autre COD est présent</h4>
+  <p>Si un COD autre que le pronom réfléchi est placé avant le participe passé, l’accord se fait avec ce COD. S’il est placé après, il n’y a pas d’accord avec le pronom réfléchi.</p>
+  <p class="example">Les cartes qu’elles se sont envoyées. · Elles se sont envoyé des cartes.</p>
+  <h4>Les verbes essentiellement pronominaux</h4>
+  <p>Certains verbes s’emploient essentiellement à la forme pronominale. Leur participe passé s’accorde avec le sujet.</p>
+  <p class="example">Elles se sont enfuies. · Il s’est évanoui. · Ils se sont souvenus de cette histoire.</p>
+  <div class="theory-note"><strong>Attention :</strong> la présence de <em>se</em> ne suffit jamais à décider de l’accord. Il faut analyser la construction du verbe : COD, COI ou verbe essentiellement pronominal.</div>
+ </article>
+
+ <article class="theory-card">
+  <h3>5. Passer du passé simple au passé composé</h3>
+  <p>Pour transformer une phrase, il faut identifier l’infinitif, choisir l’auxiliaire approprié, conjuguer cet auxiliaire au présent et ajouter le participe passé. Il faut ensuite appliquer les règles d’accord habituelles.</p>
+  <table><thead><tr><th>Passé simple</th><th>Passé composé</th></tr></thead><tbody>
+   <tr><td>il prit</td><td>il a pris</td></tr>
+   <tr><td>elle détruisit</td><td>elle a détruit</td></tr>
+   <tr><td>ils suivirent</td><td>ils ont suivi</td></tr>
+   <tr><td>elles vinrent</td><td>elles sont venues</td></tr>
+   <tr><td>il naquit</td><td>il est né</td></tr>
+  </tbody></table>
+ </article>
+
+ <article class="theory-card">
+  <h3>6. La méthode de vérification</h3>
+  <ol>
+   <li>Repérer l’auxiliaire : <em>avoir</em>, <em>être</em> ou une forme pronominale.</li>
+   <li>Avec <em>avoir</em>, identifier le COD et vérifier sa place.</li>
+   <li>Avec <em>être</em>, identifier le sujet et vérifier son genre et son nombre.</li>
+   <li>Avec un verbe pronominal, analyser la fonction de <em>se</em> et repérer un autre COD éventuel.</li>
+   <li>Vérifier enfin la forme du participe passé et les marques du féminin et du pluriel.</li>
+  </ol>
+ </article>
+</section>
+
+<section class="exercise" data-title="Exercice 1 — Formes du participe passé">
+ <div class="ex-head"><div><h2>1. Formes du participe passé</h2><p>Écris le participe passé du verbe indiqué. <strong>Format de réponse : réécris toute la phrase dans le champ, avec le participe passé correctement accordé.</strong></p></div><span class="score"></span></div>
+ <div class="q" data-sentence="true" data-correct="séduit" data-label="L’actrice a ___ le public. (séduire)"><div class="prompt">1. L’actrice a <b>___</b> le public. <i>(séduire)</i></div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Réponse 1"></div></div>
+ <div class="q" data-sentence="true" data-correct="cuit" data-label="Le poulet a ___ au four. (cuire)"><div class="prompt">2. Le poulet a <b>___</b> au four pendant deux heures. <i>(cuire)</i></div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Réponse 2"></div></div>
+ <div class="q" data-sentence="true" data-correct="réduit" data-label="Cette sauce au vin a ___. (réduire)"><div class="prompt">3. Cette sauce au vin a <b>___</b>. <i>(réduire)</i></div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Réponse 3"></div></div>
+ <div class="q" data-sentence="true" data-correct="applaudi" data-label="Le professeur a ___ un étudiant. (applaudir)"><div class="prompt">4. Le professeur a <b>___</b> un étudiant. <i>(applaudir)</i></div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Réponse 4"></div></div>
+ <div class="q" data-sentence="true" data-correct="conduit" data-label="Cet homme a ___ à l’étranger. (conduire)"><div class="prompt">5. Cet homme a <b>___</b> à l’étranger. <i>(conduire)</i></div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Réponse 5"></div></div>
+ <div class="q" data-sentence="true" data-correct="traduits" data-label="Les albums ont été ___ en plusieurs langues. (traduire)"><div class="prompt">6. Les albums ont été <b>___</b> en plusieurs langues. <i>(traduire)</i></div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Réponse 6"></div></div>
+ <div class="q" data-sentence="true" data-correct="suffi" data-label="Trois heures n’ont pas ___ aux randonneurs. (suffire)"><div class="prompt">7. Trois heures n’ont pas <b>___</b> aux randonneurs. <i>(suffire)</i></div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Réponse 7"></div></div>
+ <div class="q" data-sentence="true" data-correct="souri" data-label="François a ___ à Valérie. (sourire)"><div class="prompt">8. François a <b>___</b> à Valérie. <i>(sourire)</i></div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Réponse 8"></div></div>
+ <div class="q" data-sentence="true" data-correct="consenti" data-label="Le magasin n’a pas ___ à nous faire une ristourne. (consentir)"><div class="prompt">9. Le magasin n’a pas <b>___</b> à nous faire une ristourne. <i>(consentir)</i></div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Réponse 9"></div></div>
+ <div class="q" data-sentence="true" data-correct="haï" data-label="Sa mère a toujours ___ le mensonge. (haïr)"><div class="prompt">10. Sa mère a toujours <b>___</b> le mensonge. <i>(haïr)</i></div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Réponse 10"></div></div>
+ <div class="ex-footer"><button class="small copy-ex">Copier mes réponses</button><button class="secondary check-ex">Vérifier cet exercice</button><span class="score"></span></div>
+</section>
+
+<section class="exercise" data-title="Exercice 2 — Passé simple au passé composé">
+ <div class="ex-head"><div><h2>2. Du passé simple au passé composé</h2><p>Réécris la phrase au passé composé. Conserve tous les pronoms et les accords. <strong>Format de réponse : écris la phrase entière, sans te limiter au participe passé.</strong></p></div><span class="score"></span></div>
+ <div class="q" data-correct="À leur départ, les fugitifs ont pris du retard." data-manual="true" data-label="À leur départ, les fugitifs prirent du retard."><div class="prompt">1. À leur départ, les fugitifs prirent du retard.</div><div class="answerline"><input class="wide" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Transformation 1"></div></div>
+ <div class="q" data-correct="Leurs complices ne les ont pas accueillis comme prévu au point de rendez-vous." data-manual="true" data-label="Leurs complices ne les accueillirent pas comme prévu au point de rendez-vous."><div class="prompt">2. Leurs complices ne les accueillirent pas comme prévu au point de rendez-vous.</div><div class="answerline"><input class="wide" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Transformation 2"></div></div>
+ <div class="q" data-correct="On a reconduit les prisonniers à Paris." data-manual="true" data-label="On reconduisit les prisonniers à Paris."><div class="prompt">3. On reconduisit les prisonniers à Paris.</div><div class="answerline"><input class="wide" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Transformation 3"></div></div>
+ <div class="q" data-correct="La foule a envahi le Palais du roi." data-manual="true" data-label="La foule envahit le Palais du roi."><div class="prompt">4. La foule envahit le Palais du roi.</div><div class="answerline"><input class="wide" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Transformation 4"></div></div>
+ <div class="q" data-correct="Elle a détruit les bustes de Louis XVI." data-manual="true" data-label="Elle détruisit les bustes de Louis XVI."><div class="prompt">5. Elle détruisit les bustes de Louis XVI.</div><div class="answerline"><input class="wide" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Transformation 5"></div></div>
+ <div class="q" data-correct="Tout le monde connaît les événements qui ont suivi." data-manual="true" data-label="Tout le monde connaît les événements qui suivirent."><div class="prompt">6. Tout le monde connaît les événements qui suivirent.</div><div class="answerline"><input class="wide" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Transformation 6"></div></div>
+ <div class="ex-footer"><button class="small copy-ex">Copier mes réponses</button><button class="secondary check-ex">Vérifier cet exercice</button><span class="score"></span></div>
+</section>
+
+<section class="exercise" data-title="Exercice 3 — Accords">
+ <div class="ex-head"><div><h2>3. Accords : -s, -t, -e, -es</h2><p>Complète le participe passé. N’ajoute que les lettres nécessaires, ou écris la forme complète. <strong>Format de réponse : réécris toute la phrase dans le champ, avec le participe passé correctement accordé.</strong></p></div><span class="score"></span></div>
+ <div class="q" data-sentence="true" data-correct="inscrite" data-label="Armelle s’est ___ en fac de droit."><div class="prompt">1. Armelle s’est <b>___</b> en fac de droit.</div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Accord 1"></div></div>
+ <div class="q" data-sentence="true" data-correct="traduits" data-label="Les albums ont été ___ en plusieurs langues."><div class="prompt">2. Les albums ont été <b>___</b> en plusieurs langues.</div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Accord 2"></div></div>
+ <div class="q" data-sentence="true" data-correct="souri" data-label="François a ___ à Valérie."><div class="prompt">3. François a <b>___</b> à Valérie.</div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Accord 3"></div></div>
+ <div class="q" data-sentence="true" data-correct="consenti" data-label="Le magasin a ___ à nous faire une ristourne."><div class="prompt">4. Le magasin a <b>___</b> à nous faire une ristourne.</div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Accord 4"></div></div>
+ <div class="q" data-sentence="true" data-correct="écrites" data-label="Les lettres qu’elles se sont ___ étaient touchantes."><div class="prompt">5. Les lettres qu’elles se sont <b>___</b> étaient touchantes.</div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Accord 5"></div></div>
+ <div class="q" data-sentence="true" data-correct="téléphoné" data-label="Les deux amis se sont ___ pendant une heure."><div class="prompt">6. Les deux amis se sont <b>___</b> pendant une heure.</div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Accord 6"></div></div>
+ <div class="q" data-sentence="true" data-correct="choisies" data-label="Les candidates ont été ___ par le jury."><div class="prompt">7. Les candidates ont été <b>___</b> par le jury.</div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Accord 7"></div></div>
+ <div class="q" data-sentence="true" data-correct="lavé" data-label="Ils se sont ___ les mains avant de passer à table."><div class="prompt">8. Ils se sont <b>___</b> les mains avant de passer à table.</div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Accord 8"></div></div>
+ <div class="ex-footer"><button class="small copy-ex">Copier mes réponses</button><button class="secondary check-ex">Vérifier cet exercice</button><span class="score"></span></div>
+</section>
+
+<section class="exercise" data-title="Exercice 4 — Verbes pronominaux">
+ <div class="ex-head"><div><h2>4. Les verbes pronominaux</h2><p>Choisis la forme correcte en écrivant le participe passé complet. <strong>Format de réponse : réécris toute la phrase dans le champ, avec le participe passé correctement accordé.</strong></p></div><span class="score"></span></div>
+ <div class="q" data-sentence="true" data-correct="félicités" data-label="Les joueurs se sont ___ après le match."><div class="prompt">1. Les joueurs se sont <b>___</b> après le match. <span class="small">(féliciter)</span></div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Pronominal 1"></div></div>
+ <div class="q" data-sentence="true" data-correct="écrit" data-label="Mes deux collègues se sont ___ des messages."><div class="prompt">2. Mes deux collègues se sont <b>___</b> des messages. <span class="small">(écrire)</span></div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Pronominal 2"></div></div>
+ <div class="q" data-sentence="true" data-correct="écrits" data-label="Les messages qu’ils s’étaient ___ étaient émouvants."><div class="prompt">3. Les messages qu’ils s’étaient <b>___</b> étaient émouvants. <span class="small">(écrire)</span></div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Pronominal 3"></div></div>
+ <div class="q" data-sentence="true" data-correct="embrassés" data-label="Les mariés se sont ___ devant leurs familles."><div class="prompt">4. Les mariés se sont <b>___</b> devant leurs familles. <span class="small">(embrasser)</span></div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Pronominal 4"></div></div>
+ <div class="q" data-sentence="true" data-correct="lavé" data-label="Elle s’est ___ les cheveux."><div class="prompt">5. Elle s’est <b>___</b> les cheveux. <span class="small">(laver)</span></div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Pronominal 5"></div></div>
+ <div class="q" data-sentence="true" data-correct="lavés" data-label="Les cheveux qu’elle s’est ___ sont encore mouillés."><div class="prompt">6. Les cheveux qu’elle s’est <b>___</b> sont encore mouillés. <span class="small">(laver)</span></div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Pronominal 6"></div></div>
+ <div class="q" data-sentence="true" data-correct="rendu" data-label="Ils se sont ___ compte de leur erreur."><div class="prompt">7. Ils se sont <b>___</b> compte de leur erreur. <span class="small">(se rendre compte)</span></div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Pronominal 7"></div></div>
+ <div class="q" data-sentence="true" data-correct="souvenues" data-label="Elles se sont ___ de cette journée."><div class="prompt">8. Elles se sont <b>___</b> de cette journée. <span class="small">(se souvenir)</span></div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Pronominal 8"></div></div>
+ <div class="ex-footer"><button class="small copy-ex">Copier mes réponses</button><button class="secondary check-ex">Vérifier cet exercice</button><span class="score"></span></div>
+</section>
+
+<section class="exercise" data-title="Exercice 5 — Choisir et analyser">
+ <div class="ex-head"><div><h2>5. Identifier la règle</h2><p>Pour chaque phrase, sélectionne la justification grammaticale correcte. <strong>Format de réponse : sélectionne une seule lettre (A, B, C, D, E ou F) dans la liste.</strong></p></div><span class="score"></span></div>
+ <div class="q" data-correct="E" data-label="Les joueurs se sont félicités."><div class="prompt">1. <i>Les joueurs se sont félicités.</i></div><select aria-label="Justification 1"><option value="">— Choisir —</option><option value="A">A — COD placé avant le verbe</option><option value="B">B — Pas de COD avec avoir</option><option value="C">C — Forme passive : accord avec le sujet</option><option value="D">D — COD placé après le verbe</option><option value="E">E — Verbe pronominal : se est COD</option><option value="F">F — Verbe pronominal : se est COI</option></select></div>
+ <div class="q" data-correct="C" data-label="Les colis ont été envoyés."><div class="prompt">2. <i>Les colis ont été envoyés.</i></div><select aria-label="Justification 2"><option value="">— Choisir —</option><option value="A">A — COD placé avant le verbe</option><option value="B">B — Pas de COD avec avoir</option><option value="C">C — Forme passive : accord avec le sujet</option><option value="D">D — COD placé après le verbe</option><option value="E">E — Verbe pronominal : se est COD</option><option value="F">F — Verbe pronominal : se est COI</option></select></div>
+ <div class="q" data-correct="F" data-label="Mes collègues se sont écrit des messages."><div class="prompt">3. <i>Mes collègues se sont écrit des messages.</i></div><select aria-label="Justification 3"><option value="">— Choisir —</option><option value="A">A — COD placé avant le verbe</option><option value="B">B — Pas de COD avec avoir</option><option value="C">C — Forme passive : accord avec le sujet</option><option value="D">D — COD placé après le verbe</option><option value="E">E — Verbe pronominal : se est COD</option><option value="F">F — Verbe pronominal : se est COI</option></select></div>
+ <div class="q" data-correct="F" data-label="L’avocat et son client se sont parlé."><div class="prompt">4. <i>L’avocat et son client se sont parlé.</i></div><select aria-label="Justification 4"><option value="">— Choisir —</option><option value="A">A — COD placé avant le verbe</option><option value="B">B — Pas de COD avec avoir</option><option value="C">C — Forme passive : accord avec le sujet</option><option value="D">D — COD placé après le verbe</option><option value="E">E — Verbe pronominal : se est COD</option><option value="F">F — Verbe pronominal : se est COI</option></select></div>
+ <div class="q" data-correct="B" data-label="Nos adversaires ont triché."><div class="prompt">5. <i>Nos adversaires ont triché.</i></div><select aria-label="Justification 5"><option value="">— Choisir —</option><option value="A">A — COD placé avant le verbe</option><option value="B">B — Pas de COD avec avoir</option><option value="C">C — Forme passive : accord avec le sujet</option><option value="D">D — COD placé après le verbe</option><option value="E">E — Verbe pronominal : se est COD</option><option value="F">F — Verbe pronominal : se est COI</option></select></div>
+ <div class="q" data-correct="A" data-label="L’ont-elles déjà vu ?"><div class="prompt">6. <i>L’ont-elles déjà vu ?</i></div><select aria-label="Justification 6"><option value="">— Choisir —</option><option value="A">A — COD placé avant le verbe</option><option value="B">B — Pas de COD avec avoir</option><option value="C">C — Forme passive : accord avec le sujet</option><option value="D">D — COD placé après le verbe</option><option value="E">E — Verbe pronominal : se est COD</option><option value="F">F — Verbe pronominal : se est COI</option></select></div>
+ <div class="q" data-correct="C" data-label="Les filles ont été invitées."><div class="prompt">7. <i>Les filles ont été invitées.</i></div><select aria-label="Justification 7"><option value="">— Choisir —</option><option value="A">A — COD placé avant le verbe</option><option value="B">B — Pas de COD avec avoir</option><option value="C">C — Forme passive : accord avec le sujet</option><option value="D">D — COD placé après le verbe</option><option value="E">E — Verbe pronominal : se est COD</option><option value="F">F — Verbe pronominal : se est COI</option></select></div>
+ <div class="q" data-correct="F" data-label="Les frères se sont souvent écrit."><div class="prompt">8. <i>Les frères se sont souvent écrit.</i></div><select aria-label="Justification 8"><option value="">— Choisir —</option><option value="A">A — COD placé avant le verbe</option><option value="B">B — Pas de COD avec avoir</option><option value="C">C — Forme passive : accord avec le sujet</option><option value="D">D — COD placé après le verbe</option><option value="E">E — Verbe pronominal : se est COD</option><option value="F">F — Verbe pronominal : se est COI</option></select></div>
+ <div class="q" data-correct="A" data-label="Les frites qu’on a mangées étaient bonnes."><div class="prompt">9. <i>Les frites qu’on a mangées étaient bonnes.</i></div><select aria-label="Justification 9"><option value="">— Choisir —</option><option value="A">A — COD placé avant le verbe</option><option value="B">B — Pas de COD avec avoir</option><option value="C">C — Forme passive : accord avec le sujet</option><option value="D">D — COD placé après le verbe</option><option value="E">E — Verbe pronominal : se est COD</option><option value="F">F — Verbe pronominal : se est COI</option></select></div>
+ <div class="ex-footer"><button class="small copy-ex">Copier mes réponses</button><button class="secondary check-ex">Vérifier cet exercice</button><span class="score"></span></div>
+</section>
+
+<section class="exercise" data-title="Exercice 6 — Texte à trous">
+ <div class="ex-head"><div><h2>6. Texte à trous — La mort de Charles VIII</h2><p>Complète chaque participe passé. Écris la forme complète. <strong>Format de réponse : écris uniquement la forme complète du participe passé dans chaque champ, un mot par trou.</strong></p></div><span class="score"></span></div>
+ <p>Le matin du 7 avril 1498, le roi a commencé sa journée en allant à la chasse puis, après être rentré <span class="q inline-q" data-correct="rentré" data-label="Trou 1"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Trou 1" placeholder="…" style="width:92px"></span>, il a rendu visite à sa femme, Anne de Bretagne. Il l’a alors invité <span class="q inline-q" data-correct="invitée" data-label="Trou 2"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Trou 2" placeholder="…" style="width:92px"></span> à une partie de jeu de paume, ce qu’elle a accepté <span class="q inline-q" data-correct="accepté" data-label="Trou 3"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Trou 3" placeholder="…" style="width:92px"></span>. Tous deux sont passé <span class="q inline-q" data-correct="passés" data-label="Trou 4"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Trou 4" placeholder="…" style="width:92px"></span> par la cour et les appartements du roi, ont descendu un escalier qui donnait sur une petite porte qu’ils ont emprunté <span class="q inline-q" data-correct="empruntée" data-label="Trou 5"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Trou 5" placeholder="…" style="width:92px"></span>. Au moment de passer la porte, Charles VIII s’est brutalement cogné <span class="q inline-q" data-correct="cogné" data-label="Trou 6"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Trou 6" placeholder="…" style="width:92px"></span> la tête au linteau. Mais il a été seulement un peu sonné <span class="q inline-q" data-correct="sonné" data-label="Trou 7"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Trou 7" placeholder="…" style="width:92px"></span> et a poursuivi <span class="q inline-q" data-correct="poursuivi" data-label="Trou 8"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Trou 8" placeholder="…" style="width:92px"></span> son chemin. La reine qui l’avait suivi <span class="q inline-q" data-correct="suivi" data-label="Trou 9"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Trou 9" placeholder="…" style="width:92px"></span> ne s’est pas plus inquiété <span class="q inline-q" data-correct="inquiétée" data-label="Trou 10"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Trou 10" placeholder="…" style="width:92px"></span> que lui. Ils se sont installé <span class="q inline-q" data-correct="installés" data-label="Trou 11"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Trou 11" placeholder="…" style="width:92px"></span> avec leurs amis et ont regardé <span class="q inline-q" data-correct="regardé" data-label="Trou 12"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Trou 12" placeholder="…" style="width:92px"></span> la partie qui avait déjà commencé <span class="q inline-q" data-correct="commencé" data-label="Trou 13"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Trou 13" placeholder="…" style="width:92px"></span>. Tout à coup, le roi est tombé <span class="q inline-q" data-correct="tombé" data-label="Trou 14"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Trou 14" placeholder="…" style="width:92px"></span>. Tout le monde a accouru <span class="q inline-q" data-correct="accouru" data-label="Trou 15"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Trou 15" placeholder="…" style="width:92px"></span>, lui a posé <span class="q inline-q" data-correct="posé" data-label="Trou 16"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Trou 16" placeholder="…" style="width:92px"></span> des questions auxquelles il n’a pas répondu <span class="q inline-q" data-correct="répondu" data-label="Trou 17"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Trou 17" placeholder="…" style="width:92px"></span>. Les médecins, qui ont été appelé <span class="q inline-q" data-correct="appelés" data-label="Trou 18"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Trou 18" placeholder="…" style="width:92px"></span> précipitamment, se sont efforcé <span class="q inline-q" data-correct="efforcés" data-label="Trou 19"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Trou 19" placeholder="…" style="width:92px"></span> de l’aider, en vain. Le roi avait rendu <span class="q inline-q" data-correct="rendu" data-label="Trou 20"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Trou 20" placeholder="…" style="width:92px"></span> l’âme à cause d’une porte trop basse.</p>
+ <div class="ex-footer"><button class="small copy-ex">Copier mes réponses</button><button class="secondary check-ex">Vérifier cet exercice</button><span class="score"></span></div>
+</section>
+
+
+<section class="exercise" data-title="Exercice 7 — Repérage du COD">
+ <div class="ex-head"><div><h2>7. Repérer le COD avant d’accorder</h2><p>Complète le participe passé. Attention à la place du COD et aux verbes qui se construisent avec un COI. <strong>Format de réponse : réécris toute la phrase dans le champ, avec le participe passé correctement accordé.</strong></p></div><span class="score"></span></div>
+ <div class="q" data-sentence="true" data-correct="préparés" data-explain="Avec avoir, le COD « les dossiers » est placé avant le participe passé : accord au masculin pluriel." data-label="Les dossiers que nous avons ___ seront envoyés demain. (préparer)"><div class="prompt">1. Les dossiers que nous avons <b>___</b> seront envoyés demain. <i>(préparer)</i></div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" aria-label="Réponse 1"></div></div>
+ <div class="q" data-sentence="true" data-correct="téléphoné" data-explain="Téléphoner se construit avec à : « à ses collègues » est COI. Il n’y a donc pas d’accord." data-label="Les collègues auxquels elle a ___ sont déjà partis. (téléphoner)"><div class="prompt">2. Les collègues auxquels elle a <b>___</b> sont déjà partis. <i>(téléphoner)</i></div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" aria-label="Réponse 2"></div></div>
+ <div class="q" data-sentence="true" data-correct="écrites" data-explain="Le pronom relatif « que » reprend « les lettres », COD féminin pluriel placé avant le participe passé." data-label="Les lettres qu’il a ___ ont été conservées. (écrire)"><div class="prompt">3. Les lettres qu’il a <b>___</b> ont été conservées. <i>(écrire)</i></div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" aria-label="Réponse 3"></div></div>
+ <div class="q" data-sentence="true" data-correct="parlé" data-explain="Parler à quelqu’un introduit un COI. Le pronom « nous » est COI, donc le participe passé reste invariable." data-label="Nous nous sommes ___ de ce projet pendant des heures. (parler)"><div class="prompt">4. Nous nous sommes <b>___</b> de ce projet pendant des heures. <i>(parler)</i></div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" aria-label="Réponse 4"></div></div>
+ <div class="ex-footer"><button class="small copy-ex">Copier mes réponses</button><button class="secondary check-ex">Vérifier cet exercice</button><span class="score"></span></div>
+</section>
+
+<section class="exercise" data-title="Exercice 8 — Détection et correction">
+ <div class="ex-head"><div><h2>8. Détecter et corriger les erreurs</h2><p>Chaque phrase contient une erreur d’accord ou une forme incorrecte. Réécris la phrase entière. <strong>Format de réponse : écris la phrase entière, sans te limiter au participe passé.</strong></p></div><span class="score"></span></div>
+ <div class="q" data-correct="Les décisions qu’elles ont prises seront annoncées demain." data-explain="Le COD « les décisions », repris par « que », précède le participe passé employé avec avoir. Il faut accorder au féminin pluriel." data-label="Les décisions qu’elles ont pris seront annoncées demain."><div class="prompt">1. Les décisions qu’elles ont pris seront annoncées demain.</div><div class="answerline"><input class="wide" type="text" aria-label="Correction 1"></div></div>
+ <div class="q" data-correct="Ils se sont rendu compte de leur erreur." data-explain="Dans « se rendre compte », le participe passé de la locution reste invariable : « se » est COI et « compte » est COD." data-label="Ils se sont rendus compte de leur erreur."><div class="prompt">2. Ils se sont rendus compte de leur erreur.</div><div class="answerline"><input class="wide" type="text" aria-label="Correction 2"></div></div>
+ <div class="q" data-correct="Les témoins se sont succédé à la barre." data-explain="Succéder à quelqu’un se construit avec un COI. Le participe passé du verbe pronominal reste invariable." data-label="Les témoins se sont succédés à la barre."><div class="prompt">3. Les témoins se sont succédés à la barre.</div><div class="answerline"><input class="wide" type="text" aria-label="Correction 3"></div></div>
+ <div class="q" data-correct="Les œuvres ont été détruites pendant l’incendie." data-explain="À la voix passive avec être, le participe passé s’accorde avec le sujet féminin pluriel « les œuvres »." data-label="Les œuvres ont été détruit pendant l’incendie."><div class="prompt">4. Les œuvres ont été détruit pendant l’incendie.</div><div class="answerline"><input class="wide" type="text" aria-label="Correction 4"></div></div>
+ <div class="ex-footer"><button class="small copy-ex">Copier mes réponses</button><button class="secondary check-ex">Vérifier cet exercice</button><span class="score"></span></div>
+</section>
+
+<section class="exercise" data-title="Exercice 9 — Choisir la forme correcte en contexte">
+ <div class="ex-head"><div><h2>9. Formes particulières en contexte</h2><p>Complète sans liste de propositions. Fais attention aux participes passés en -i, -is et -it. <strong>Format de réponse : réécris toute la phrase dans le champ, avec le participe passé correctement accordé.</strong></p></div><span class="score"></span></div>
+ <div class="q" data-sentence="true" data-correct="absous" data-explain="Le participe passé d’absoudre est « absous » au masculin singulier." data-label="Le prévenu a été ___ par le tribunal. (absoudre)"><div class="prompt">1. Le prévenu a été <b>___</b> par le tribunal. <i>(absoudre)</i></div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" aria-label="Réponse 1"></div></div>
+ <div class="q" data-sentence="true" data-correct="dissous" data-explain="Le participe passé de dissoudre est « dissous » au masculin singulier." data-label="Le comité a été ___ après le vote. (dissoudre)"><div class="prompt">2. Le comité a été <b>___</b> après le vote. <i>(dissoudre)</i></div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" aria-label="Réponse 2"></div></div>
+ <div class="q" data-sentence="true" data-correct="béni" data-explain="Le participe passé du verbe bénir est « béni ». La forme « bénit » s’emploie notamment comme adjectif dans certaines expressions, par exemple « pain bénit »." data-label="Le prêtre a ___ l’eau avant la cérémonie. (bénir, emploi religieux)"><div class="prompt">3. Le prêtre a <b>___</b> l’eau avant la cérémonie. <i>(bénir)</i></div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" aria-label="Réponse 3"></div></div>
+ <div class="q" data-sentence="true" data-correct="inclus" data-explain="Le participe passé d’inclure est « inclus » au masculin singulier." data-label="Le rapport a ___ une annexe méthodologique. (inclure)"><div class="prompt">4. Le rapport a <b>___</b> une annexe méthodologique. <i>(inclure)</i></div><div class="answerline"><input class="wide" type="text" placeholder="Écris la phrase entière" aria-label="Réponse 4"></div></div>
+ <div class="ex-footer"><button class="small copy-ex">Copier mes réponses</button><button class="secondary check-ex">Vérifier cet exercice</button><span class="score"></span></div>
+</section>
+
+<section class="exercise" data-title="Exercice 10 — Justifier l’accord">
+ <div class="ex-head"><div><h2>10. Justifier l’accord</h2><p>Pour chaque phrase, explique brièvement pourquoi le participe passé s’accorde ou reste invariable. Ces réponses seront vérifiées par l’enseignant. <strong>Format de réponse : réécris toute la phrase dans le champ, avec le participe passé correctement accordé.</strong></p></div><span class="score"></span></div>
+ <div class="q" data-manual="true" data-label="Les précautions qu’elle a prises ont été utiles."><div class="prompt">1. Les précautions qu’elle a prises ont été utiles. Explique l’accord de « prises ».</div><textarea rows="2" style="width:100%;padding:10px;border:1px solid #cfc8bc;border-radius:7px;font:inherit"></textarea></div>
+ <div class="q" data-manual="true" data-label="Elles se sont parlé après la réunion."><div class="prompt">2. Elles se sont parlé après la réunion. Explique pourquoi « parlé » ne s’accorde pas.</div><textarea rows="2" style="width:100%;padding:10px;border:1px solid #cfc8bc;border-radius:7px;font:inherit"></textarea></div>
+ <div class="q" data-manual="true" data-label="Les candidates sont arrivées en avance."><div class="prompt">3. Les candidates sont arrivées en avance. Explique l’accord de « arrivées ».</div><textarea rows="2" style="width:100%;padding:10px;border:1px solid #cfc8bc;border-radius:7px;font:inherit"></textarea></div>
+ <div class="ex-footer"><button class="small copy-ex">Copier mes réponses</button><button class="secondary check-ex">Signaler mes réponses</button><span class="score"></span></div>
+</section>
+
+<section class="exercise" data-title="Exercice 11 — Production libre">
+ <div class="ex-head"><div><h2>11. Production — B2/C1</h2><p>Réécris le passage au passé composé. La correction est à vérifier manuellement. <strong>Format de réponse : réécris toute la phrase dans le champ, avec le participe passé correctement accordé.</strong></p></div><span class="score"></span></div>
+ <p>La chercheuse découvrit plusieurs lettres dans les archives. Elle les lut attentivement, puis elle se rendit compte qu’elles avaient été écrites par une femme dont les historiens avaient longtemps ignoré l’existence. Ses collègues se parlèrent de cette découverte et se promirent de vérifier les dates. Les informations qu’ils recueillirent furent ensuite publiées dans une revue spécialisée.</p>
+ <div class="q" data-manual="true" data-label="Réécriture complète au passé composé"><textarea class="wide" rows="7" style="width:100%;padding:11px;border:1px solid #cfc8bc;border-radius:7px;font:inherit" aria-label="Votre réécriture"></textarea><div class="answerline"></div></div>
+ <div class="ex-footer"><button class="small copy-ex">Copier mes réponses</button><button class="secondary check-ex">Signaler ma réponse</button><span class="score"></span></div>
+</section>
+
+<div class="toolbar">
+ <button id="checkAllBottom">Vérifier mes réponses</button>
+ <button class="secondary" id="copyReportBottom">Copier le rapport</button>
+ <button class="secondary" id="resetBottom">Recommencer</button>
+</div>
+
+<section class="report" id="report">
+ <h2>Résultats</h2>
+ <div id="summary"></div>
+ <div id="reportText" class="note" style="white-space:pre-wrap;overflow-wrap:anywhere"></div>
+ <button id="copyReport">Copier le rapport complet</button>
+ <span id="copyStatus" class="small" aria-live="polite"></span>
+</section>
+<footer>Exercice autonome — les réponses restent dans cette page jusqu’à ce que tu cliques sur « Recommencer » ou que tu fermes l’onglet. Aucun résultat n’est envoyé automatiquement.</footer>
+</main>
+<script>
+(function(){
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
+let lastReport='';
+function norm(s){return (s||'').toLowerCase().trim().replace(/[’‘`]/g,"'").replace(/[.,!?;:]/g,'').replace(/\s+/g,'').normalize('NFC');}
+function getControl(q){return $('input[type=text],textarea,select',q);}
+function getValue(q){const c=getControl(q);return c?c.value.trim():'';}
+function expected(q){
+ if(q.dataset.sentence==='true'){
+  const base=(q.dataset.label||'').replace(/\s*\([^()]*\)\s*$/,'').replace(/___+/g,q.dataset.correct||'');
+  return base;
+ }
+ return q.dataset.correct||q.dataset.sample||'';
+}
+function setResult(q,status,msg,showExpected){
+
+ q.classList.remove('correct','incorrect','manual');
+ const old=$('.status',q);if(old)old.remove();
+ const oldExp=$('.expected',q);if(oldExp)oldExp.remove();
+ q.classList.add(status);
+ const el=document.createElement('div');el.className='status '+(status==='correct'?'ok':status==='incorrect'?'bad':status==='manual'?'manual':'empty');el.textContent=msg;q.appendChild(el);
+ if(status==='incorrect'){
+  const explanation=q.dataset.explain||'Reprends la règle concernée : identifie l’auxiliaire, repère le COD et vérifie sa place, puis contrôle le genre et le nombre du sujet ou du COD.';
+  const detail=document.createElement('div');detail.className='expected';detail.textContent='Point à revoir : '+explanation;q.appendChild(detail);
+ }
+}
+function checkQ(q){
+ const c=getControl(q);const v=getValue(q);
+ if(!v){setResult(q,'empty','Non répondu',false);return 'empty';}
+ if(q.dataset.correct){
+  const choices=(expected(q)||q.dataset.correct).split('|').map(norm);
+  if(choices.includes(norm(v))){setResult(q,'correct','Correct',false);return 'correct';}
+ }
+ if(q.dataset.manual==='true' || !q.dataset.correct){
+  setResult(q,'manual','À vérifier manuellement',false);return 'manual';
+ }
+ setResult(q,'incorrect','À corriger',false);return 'incorrect';
+}
+function checkExercise(ex){
+ const qs=$$('.q',ex);let counts={correct:0,incorrect:0,empty:0,manual:0};
+ qs.forEach(q=>counts[checkQ(q)]++);
+ const score=$$('.score',ex);const n=counts.correct+'/'+qs.length+' corrects';
+ score.forEach(s=>s.textContent=n+(counts.manual?' · '+counts.manual+' à vérifier':''));
+ return counts;
+}
+function allCounts(){
+ let total={correct:0,incorrect:0,empty:0,manual:0},sections=[];
+ $$('.exercise').forEach(ex=>{const c=checkExercise(ex);Object.keys(total).forEach(k=>total[k]+=c[k]);sections.push({title:ex.dataset.title,counts:c,qs:$$('.q',ex)});});
+ return {total,sections};
+}
+function answerOf(q){return getValue(q)||'—';}
+function reportBuild(data){
+ const t=data.total;let lines=['RÉSULTATS — LE PARTICIPE PASSÉ','',`Score automatique : ${t.correct} réponse(s) correcte(s).`,`Réponses incorrectes : ${t.incorrect}. Non répondues : ${t.empty}. À vérifier manuellement : ${t.manual}.`,''];
+ data.sections.forEach(sec=>{
+  lines.push(sec.title+` — ${sec.counts.correct}/${sec.qs.length} correct(s)`);
+  sec.qs.forEach((q,i)=>{
+   const st=q.classList.contains('correct')?'CORRECT':q.classList.contains('incorrect')?'À CORRIGER':q.classList.contains('manual')?'À VÉRIFIER MANUELLEMENT':'NON RÉPONDU';
+   const prompt=q.dataset.label||$('.prompt',q)?.innerText||'Question';
+   const exp=expected(q);
+   lines.push(`${i+1}. ${prompt}`,`   Réponse de l’élève : ${answerOf(q)}`,`   Statut : ${st}`);
+   
+  });
+  lines.push('');
+ });
+ return lines.join('\n');
+}
+function showReport(){
+ const data=allCounts();lastReport=reportBuild(data);
+ const t=data.total;$('#summary').innerHTML=`<div class="stats"><span class="stat"><b>${t.correct}</b> correctes</span><span class="stat"><b>${t.incorrect}</b> à corriger</span><span class="stat"><b>${t.empty}</b> non répondues</span><span class="stat"><b>${t.manual}</b> à vérifier</span></div>`;
+ $('#reportText').textContent=lastReport;$('#report').classList.add('show');$('#report').scrollIntoView({behavior:'smooth',block:'start'});
+}
+async function copyText(txt){
+ try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(txt);return true;}}catch(e){}
+ const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();let ok=false;try{ok=document.execCommand('copy');}catch(e){}ta.remove();return ok;
+}
+function copyExercise(ex){
+ const lines=[ex.dataset.title||'Exercice'];
+ $$('.q',ex).forEach((q,i)=>{
+  const prompt=q.dataset.label||$('.prompt',q)?.innerText||`Question ${i+1}`;
+  const st=q.classList.contains('correct')?'CORRECT':q.classList.contains('incorrect')?'À CORRIGER':q.classList.contains('manual')?'À VÉRIFIER MANUELLEMENT':q.classList.contains('empty')?'NON RÉPONDU':'PAS ENCORE VÉRIFIÉ';
+  lines.push(`${i+1}. ${prompt}`,`   Réponse de l’élève : ${answerOf(q)}`,`   Statut : ${st}`);
+ });
+ const b=$('.copy-ex',ex);
+ copyText(lines.join('\n')).then(ok=>{if(b){b.textContent=ok?'Exercice copié !':'Copie impossible';setTimeout(()=>b.textContent='Copier mes réponses',1500);}});
+}
+function reset(){
+ $$('.q').forEach(q=>{const c=getControl(q);if(c)c.value='';q.classList.remove('correct','incorrect','manual');$$('.status,.expected',q).forEach(e=>e.remove());});
+ $$('.score').forEach(s=>s.textContent='');$('#report').classList.remove('show');$('#copyStatus').textContent='';lastReport='';
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+$('#checkAll').addEventListener('click',showReport);$('#checkAllBottom').addEventListener('click',showReport);
+$('#resetAll').addEventListener('click',reset);$('#resetBottom').addEventListener('click',reset);
+$$('.check-ex').forEach(b=>b.addEventListener('click',()=>{const ex=b.closest('.exercise');checkExercise(ex);}));
+$$('.copy-ex').forEach(b=>b.addEventListener('click',()=>copyExercise(b.closest('.exercise'))));
+async function copyFull(){if(!lastReport)showReport();const ok=await copyText(lastReport);$('#copyStatus').textContent=ok?'Rapport copié.':'La copie automatique a échoué : sélectionne le rapport ci-dessus et copie-le manuellement.';}
+$('#copyReport').addEventListener('click',copyFull);$('#copyReportTop').addEventListener('click',copyFull);$('#copyReportBottom').addEventListener('click',copyFull);
+})();
+</script>
+</body>
+</html>
