@@ -15,7 +15,7 @@
 section{background:var(--white);border:1px solid var(--line);border-radius:15px;padding:clamp(18px,3vw,27px);margin-bottom:18px;scroll-margin-top:65px}section h2{font:500 clamp(24px,3vw,30px)/1.2 Georgia,serif;color:var(--graphite);margin:4px 0 8px}section h3{font-size:16px;color:var(--wine);margin:23px 0 8px}.kicker{color:var(--wine2)}.muted,.hint{color:var(--muted)}
 .q{padding:14px 0;border-bottom:1px solid #eee7df}.q:last-child{border:0}.q strong{display:block;margin-bottom:7px}.opt{display:block;font-size:14px;margin:6px 0}.opt input,.checks input{accent-color:var(--wine);margin-right:7px}
 .answer{display:flex;gap:7px;align-items:flex-start;margin-top:9px}.answer input,.answer textarea,.cloze input{width:100%;min-width:0;border:1px solid #d8cfc6;border-radius:8px;background:white;padding:9px 11px;font:inherit;font-size:14px;color:var(--ink)}.answer textarea{min-height:78px;resize:vertical}.answer input:focus,.answer textarea:focus,.cloze input:focus{outline:2px solid #c99aa6;outline-offset:1px}
-.copy,button{border:1px solid #d9cfc7;border-radius:8px;background:var(--white);color:var(--wine);padding:8px 10px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}.copy:hover,button:hover{background:var(--cream)}.copy.done{background:#e8f0e9;color:var(--ok)}.primary{background:var(--wine);color:white;border-color:var(--wine)}.primary:hover{background:var(--wine2)}
+.copy,button{border:1px solid #d9cfc7;border-radius:8px;background:var(--white);color:var(--wine);padding:8px 10px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}.copy:hover,button:hover{background:var(--cream)}.copy-results{background:var(--cream);border-color:#cdb9b2}.copy-results.done{background:#e8f0e9;color:var(--ok)}.copy.done{background:#e8f0e9;color:var(--ok)}.primary{background:var(--wine);color:white;border-color:var(--wine)}.primary:hover{background:var(--wine2)}
 .row{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-top:13px}.status{font-size:13px;color:var(--muted)}.feedback{margin-top:9px;padding:10px 12px;border-radius:8px;font-size:13px;background:#f1ece6}.feedback.good{background:#e8f0e9;color:var(--ok)}.feedback.bad{background:#f5e8e8;color:var(--bad)}.feedback:empty{display:none}
 .table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14px}td,th{border:1px solid var(--line);padding:9px;text-align:left}th{background:var(--cream);color:var(--wine)}
 .timeline{display:grid;grid-template-columns:1fr 1fr;gap:10px}.timeline div{padding:14px;border:1px solid var(--line);border-radius:9px;background:#fff}.timeline div:first-child{border-top:3px solid var(--gold)}.timeline div:last-child{border-top:3px solid var(--wine2)}.timeline small{display:block;color:var(--muted);font-size:10px;font-weight:bold;letter-spacing:.1em}
@@ -41,7 +41,7 @@ section{background:var(--white);border:1px solid var(--line);border-radius:15px;
 <div class="q"><strong>3. Dans quelle phrase l’imparfait exprime-t-il une habitude ?</strong><label class="opt"><input type="radio" name="d3" value="a"> Hier, le bus est arrivé en retard.</label><label class="opt"><input type="radio" name="d3" value="b"> Tous les étés, nous passions les vacances chez nos grands-parents.</label><label class="opt"><input type="radio" name="d3" value="c"> Quand je suis arrivé, ils avaient déjà commencé.</label></div>
 <div class="q"><strong>4. Dans « Quand nous sommes entrés, le spectacle avait commencé », quelle action s’est produite en premier ?</strong><label class="opt"><input type="radio" name="d4" value="a"> Nous sommes entrés.</label><label class="opt"><input type="radio" name="d4" value="b"> Le spectacle avait commencé.</label><label class="opt"><input type="radio" name="d4" value="c"> Les deux actions ont commencé en même temps.</label></div>
 <div class="q"><strong>5. Quelle phrase est correctement négative ?</strong><label class="opt"><input type="radio" name="d5" value="a"> Elle n’avait pas compris la consigne.</label><label class="opt"><input type="radio" name="d5" value="b"> Elle avait ne pas compris la consigne.</label><label class="opt"><input type="radio" name="d5" value="c"> Elle n’avait compris pas la consigne.</label></div>
-<div class="row"><button class="primary" data-check="diagnostic">Vérifier</button><button data-show="diagnostic">Voir le corrigé</button><button data-reset="diagnostic">Réinitialiser</button><span id="diagnostic-status" class="status"></span></div><div id="diagnostic-feedback" class="feedback" aria-live="polite"></div>
+<div class="row"><button class="primary" data-check="diagnostic">Vérifier</button><button data-reset="diagnostic">Réinitialiser</button><button class="copy-results" data-copy-results="diagnostic">Copier les résultats</button><span id="diagnostic-status" class="status"></span></div><div id="diagnostic-feedback" class="feedback" aria-live="polite"></div>
 </section>
 
 <section id="memo">
@@ -65,25 +65,25 @@ section{background:var(--white);border:1px solid var(--line);border-radius:15px;
 
 <section id="formation">
 <div class="kicker">03 · CONSTRUIRE LES FORMES</div><h2>Former le plus-que-parfait</h2><p>Complète chaque phrase avec le plus-que-parfait du verbe entre parenthèses. Fais attention à l’auxiliaire, à la négation et aux accords.</p>
-<div class="q"><strong>1. Quand nous sommes arrivés, le film (commencer) déjà.</strong><div class="answer"><input id="f1" placeholder="Écris la forme complète"><button class="copy" data-copy="f1">Copier</button></div></div>
-<div class="q"><strong>2. Elle était fatiguée parce qu’elle (dormir) très peu.</strong><div class="answer"><input id="f2" placeholder="Écris la forme complète"><button class="copy" data-copy="f2">Copier</button></div></div>
-<div class="q"><strong>3. Je ne retrouvais plus les feuilles : je les (ranger) dans un autre dossier.</strong><div class="answer"><input id="f3" placeholder="Écris la forme complète"><button class="copy" data-copy="f3">Copier</button></div></div>
-<div class="q"><strong>4. Vous (partir) avant la fin de la réunion. (On s’adresse à plusieurs personnes féminines.)</strong><div class="answer"><input id="f4" placeholder="Écris la forme complète"><button class="copy" data-copy="f4">Copier</button></div></div>
-<div class="q"><strong>5. Les joueurs étaient déçus : ils (perdre) le match précédent.</strong><div class="answer"><input id="f5" placeholder="Écris la forme complète"><button class="copy" data-copy="f5">Copier</button></div></div>
-<div class="q"><strong>6. Quand le directeur est arrivé, la secrétaire (sortir) quelques minutes plus tôt.</strong><div class="answer"><input id="f6" placeholder="Écris la forme complète"><button class="copy" data-copy="f6">Copier</button></div></div>
-<div class="q"><strong>7. Elles ne se souvenaient plus de l’itinéraire : elles (se tromper) de chemin.</strong><div class="answer"><input id="f7" placeholder="Écris la forme complète"><button class="copy" data-copy="f7">Copier</button></div></div>
-<div class="q"><strong>8. Il était inquiet parce qu’il (ne pas recevoir) de réponse.</strong><div class="answer"><input id="f8" placeholder="Écris la forme complète"><button class="copy" data-copy="f8">Copier</button></div></div>
-<div class="row"><button class="primary" data-check="formation">Vérifier</button><button data-show="formation">Voir le corrigé</button><button data-reset="formation">Réinitialiser</button></div><div id="formation-feedback" class="feedback" aria-live="polite"></div>
+<div class="q"><strong>1. Quand nous sommes arrivés, le film (commencer) déjà.</strong><div class="answer"><input id="f1" placeholder="Écris la forme complète"></div></div>
+<div class="q"><strong>2. Elle était fatiguée parce qu’elle (dormir) très peu.</strong><div class="answer"><input id="f2" placeholder="Écris la forme complète"></div></div>
+<div class="q"><strong>3. Je ne retrouvais plus les feuilles : je les (ranger) dans un autre dossier.</strong><div class="answer"><input id="f3" placeholder="Écris la forme complète"></div></div>
+<div class="q"><strong>4. Vous (partir) avant la fin de la réunion. (On s’adresse à plusieurs personnes féminines.)</strong><div class="answer"><input id="f4" placeholder="Écris la forme complète"></div></div>
+<div class="q"><strong>5. Les joueurs étaient déçus : ils (perdre) le match précédent.</strong><div class="answer"><input id="f5" placeholder="Écris la forme complète"></div></div>
+<div class="q"><strong>6. Quand le directeur est arrivé, la secrétaire (sortir) quelques minutes plus tôt.</strong><div class="answer"><input id="f6" placeholder="Écris la forme complète"></div></div>
+<div class="q"><strong>7. Elles ne se souvenaient plus de l’itinéraire : elles (se tromper) de chemin.</strong><div class="answer"><input id="f7" placeholder="Écris la forme complète"></div></div>
+<div class="q"><strong>8. Il était inquiet parce qu’il (ne pas recevoir) de réponse.</strong><div class="answer"><input id="f8" placeholder="Écris la forme complète"></div></div>
+<div class="row"><button class="primary" data-check="formation">Vérifier</button><button data-reset="formation">Réinitialiser</button><button class="copy-results" data-copy-results="formation">Copier les résultats</button></div><div id="formation-feedback" class="feedback" aria-live="polite"></div>
 </section>
 
 <section id="temps">
 <div class="kicker">04 · CHOISIR ET JUSTIFIER</div><h2>Quel temps convient dans le contexte ?</h2><p>Conjugue le verbe au passé composé, à l’imparfait ou au plus-que-parfait. Ensuite, explique brièvement pourquoi tu as choisi ce temps.</p>
-<div class="q"><strong>1. Lorsque le car (arriver) __________ devant l’école, plusieurs élèves (attendre) __________ déjà depuis vingt minutes.</strong><div class="answer"><input id="t1a" placeholder="Verbe arriver"><button class="copy" data-copy="t1a">Copier</button></div><div class="answer"><input id="t1b" placeholder="Verbe attendre"><button class="copy" data-copy="t1b">Copier</button></div><div class="answer"><textarea id="j1" placeholder="Justifie le choix des deux temps."></textarea><button class="copy" data-copy="j1">Copier</button></div></div>
-<div class="q"><strong>2. Nous (visiter) __________ la salle des sciences quand une alarme (retentir) __________.</strong><div class="answer"><input id="t2a" placeholder="Verbe visiter"><button class="copy" data-copy="t2a">Copier</button></div><div class="answer"><input id="t2b" placeholder="Verbe retentir"><button class="copy" data-copy="t2b">Copier</button></div><div class="answer"><textarea id="j2" placeholder="Explique la relation entre les deux actions."></textarea><button class="copy" data-copy="j2">Copier</button></div></div>
-<div class="q"><strong>3. Léa ne trouvait pas son carnet parce qu’elle le (laisser) __________ dans le laboratoire.</strong><div class="answer"><input id="t3" placeholder="Verbe laisser"><button class="copy" data-copy="t3">Copier</button></div><div class="answer"><textarea id="j3" placeholder="Pourquoi ce temps est-il nécessaire ici ?"></textarea><button class="copy" data-copy="j3">Copier</button></div></div>
-<div class="q"><strong>4. Chaque année, notre classe (participer) __________ à un projet scientifique. L’année dernière, nous (construire) __________ une maquette et nous la (présenter) __________ aux familles.</strong><div class="answer"><input id="t4a" placeholder="Verbe participer"><button class="copy" data-copy="t4a">Copier</button></div><div class="answer"><input id="t4b" placeholder="Verbe construire"><button class="copy" data-copy="t4b">Copier</button></div><div class="answer"><input id="t4c" placeholder="Verbe présenter"><button class="copy" data-copy="t4c">Copier</button></div><div class="answer"><textarea id="j4" placeholder="Explique la différence entre l’habitude et les événements de l’année dernière."></textarea><button class="copy" data-copy="j4">Copier</button></div></div>
-<div class="q"><strong>5. Le professeur (demander) __________ aux élèves de recommencer parce qu’ils (ne pas suivre) __________ toutes les étapes.</strong><div class="answer"><input id="t5a" placeholder="Verbe demander"><button class="copy" data-copy="t5a">Copier</button></div><div class="answer"><input id="t5b" placeholder="Verbe ne pas suivre"><button class="copy" data-copy="t5b">Copier</button></div><div class="answer"><textarea id="j5" placeholder="Quelle action est antérieure à l’autre ?"></textarea><button class="copy" data-copy="j5">Copier</button></div></div>
-<div class="row"><button class="primary" data-check="temps">Vérifier les formes</button><button data-show="temps">Voir le corrigé</button><button data-reset="temps">Réinitialiser</button></div><div id="temps-feedback" class="feedback" aria-live="polite"></div><p class="hint small">La correction automatique porte sur les formes verbales attendues. Les justifications sont à discuter avec le professeur : plusieurs formulations personnelles peuvent être correctes.</p>
+<div class="q"><strong>1. Lorsque le car (arriver) __________ devant l’école, plusieurs élèves (attendre) __________ déjà depuis vingt minutes.</strong><div class="answer"><input id="t1a" placeholder="Verbe arriver"></div><div class="answer"><input id="t1b" placeholder="Verbe attendre"></div><div class="answer"><textarea id="j1" placeholder="Justifie le choix des deux temps."></textarea></div></div>
+<div class="q"><strong>2. Nous (visiter) __________ la salle des sciences quand une alarme (retentir) __________.</strong><div class="answer"><input id="t2a" placeholder="Verbe visiter"></div><div class="answer"><input id="t2b" placeholder="Verbe retentir"></div><div class="answer"><textarea id="j2" placeholder="Explique la relation entre les deux actions."></textarea></div></div>
+<div class="q"><strong>3. Léa ne trouvait pas son carnet parce qu’elle le (laisser) __________ dans le laboratoire.</strong><div class="answer"><input id="t3" placeholder="Verbe laisser"></div><div class="answer"><textarea id="j3" placeholder="Pourquoi ce temps est-il nécessaire ici ?"></textarea></div></div>
+<div class="q"><strong>4. Chaque année, notre classe (participer) __________ à un projet scientifique. L’année dernière, nous (construire) __________ une maquette et nous la (présenter) __________ aux familles.</strong><div class="answer"><input id="t4a" placeholder="Verbe participer"></div><div class="answer"><input id="t4b" placeholder="Verbe construire"></div><div class="answer"><input id="t4c" placeholder="Verbe présenter"></div><div class="answer"><textarea id="j4" placeholder="Explique la différence entre l’habitude et les événements de l’année dernière."></textarea></div></div>
+<div class="q"><strong>5. Le professeur (demander) __________ aux élèves de recommencer parce qu’ils (ne pas suivre) __________ toutes les étapes.</strong><div class="answer"><input id="t5a" placeholder="Verbe demander"></div><div class="answer"><input id="t5b" placeholder="Verbe ne pas suivre"></div><div class="answer"><textarea id="j5" placeholder="Quelle action est antérieure à l’autre ?"></textarea></div></div>
+<div class="row"><button class="primary" data-check="temps">Vérifier les formes</button><button data-reset="temps">Réinitialiser</button><button class="copy-results" data-copy-results="temps">Copier les résultats</button></div><div id="temps-feedback" class="feedback" aria-live="polite"></div><p class="hint small">La correction automatique porte sur les formes verbales attendues. Les justifications sont à discuter avec le professeur : plusieurs formulations personnelles peuvent être correctes.</p>
 </section>
 
 <section id="texte">
@@ -93,37 +93,37 @@ section{background:var(--white);border:1px solid var(--line);border-radius:15px;
 <p>À huit heures et demie, les premiers visiteurs <strong>(7. entrer)</strong> <input id="s7" placeholder="forme verbale">. Pendant que certains élèves <strong>(8. expliquer)</strong> <input id="s8" placeholder="forme verbale"> leurs expériences, d’autres <strong>(9. répondre)</strong> <input id="s9" placeholder="forme verbale"> aux questions des familles.</p>
 <p>Soudain, une petite panne <strong>(10. interrompre)</strong> <input id="s10" placeholder="forme verbale"> la présentation. L’écran ne fonctionnait plus parce qu’un câble <strong>(11. se débrancher)</strong> <input id="s11" placeholder="forme verbale"> pendant le déplacement du matériel. Le professeur <strong>(12. chercher)</strong> <input id="s12" placeholder="forme verbale"> une solution tandis que les élèves <strong>(13. attendre)</strong> <input id="s13" placeholder="forme verbale"> calmement.</p>
 <p>Heureusement, un élève <strong>(14. retrouver)</strong> <input id="s14" placeholder="forme verbale"> le câble derrière une table. Nous <strong>(15. reprendre)</strong> <input id="s15" placeholder="forme verbale"> la présentation quelques minutes plus tard et l’exposition <strong>(16. se terminer)</strong> <input id="s16" placeholder="forme verbale"> dans une bonne ambiance.</p></div>
-<div class="row"><button class="primary" data-check="texte">Vérifier les formes</button><button data-show="texte">Voir le corrigé</button><button data-reset="texte">Réinitialiser</button></div><div id="texte-feedback" class="feedback" aria-live="polite"></div>
+<div class="row"><button class="primary" data-check="texte">Vérifier les formes</button><button data-reset="texte">Réinitialiser</button><button class="copy-results" data-copy-results="texte">Copier les résultats</button></div><div id="texte-feedback" class="feedback" aria-live="polite"></div>
 </section>
 
 <section id="comprehension">
 <div class="kicker">06 · COMPRENDRE ET JUSTIFIER</div><h2>Revenir sur le récit</h2>
-<div class="q"><strong>1. Depuis combien de temps les élèves travaillaient-ils sur l’exposition ?</strong><div class="answer"><textarea id="c1" placeholder="Réponds en reprenant un élément précis du texte."></textarea><button class="copy" data-copy="c1">Copier</button></div></div>
-<div class="q"><strong>2. Pourquoi le professeur avait-il déjà installé les panneaux avant l’arrivée des visiteurs ?</strong><div class="answer"><textarea id="c2" placeholder="Explique la chronologie."></textarea><button class="copy" data-copy="c2">Copier</button></div></div>
-<div class="q"><strong>3. Relève une phrase à l’imparfait et explique le rôle de ce temps dans le récit.</strong><div class="answer"><textarea id="c3" placeholder="Citation + explication."></textarea><button class="copy" data-copy="c3">Copier</button></div></div>
-<div class="q"><strong>4. Relève une forme au plus-que-parfait. Quelle action s’était produite avant le moment raconté ?</strong><div class="answer"><textarea id="c4" placeholder="Citation + explication de l’antériorité."></textarea><button class="copy" data-copy="c4">Copier</button></div></div>
-<div class="q"><strong>5. Réécris la phrase « Le câble s’était débranché pendant le déplacement du matériel » au passé composé. Le sens temporel est-il exactement le même dans le récit ? Explique.</strong><div class="answer"><textarea id="c5" placeholder="Réécriture et explication."></textarea><button class="copy" data-copy="c5">Copier</button></div></div>
-<div class="q"><strong>6. Résume l’incident en trois ou quatre phrases en utilisant au moins une fois chacun des trois temps.</strong><div class="answer"><textarea id="c6" placeholder="Ton résumé…"></textarea><button class="copy" data-copy="c6">Copier</button></div></div>
-<p class="hint small">Ces questions demandent une réponse construite. Il n’y a pas de correction automatique : le professeur évalue la compréhension, la précision et la justification.</p>
+<div class="q"><strong>1. Depuis combien de temps les élèves travaillaient-ils sur l’exposition ?</strong><div class="answer"><textarea id="c1" placeholder="Réponds en reprenant un élément précis du texte."></textarea></div></div>
+<div class="q"><strong>2. Pourquoi le professeur avait-il déjà installé les panneaux avant l’arrivée des visiteurs ?</strong><div class="answer"><textarea id="c2" placeholder="Explique la chronologie."></textarea></div></div>
+<div class="q"><strong>3. Relève une phrase à l’imparfait et explique le rôle de ce temps dans le récit.</strong><div class="answer"><textarea id="c3" placeholder="Citation + explication."></textarea></div></div>
+<div class="q"><strong>4. Relève une forme au plus-que-parfait. Quelle action s’était produite avant le moment raconté ?</strong><div class="answer"><textarea id="c4" placeholder="Citation + explication de l’antériorité."></textarea></div></div>
+<div class="q"><strong>5. Réécris la phrase « Le câble s’était débranché pendant le déplacement du matériel » au passé composé. Le sens temporel est-il exactement le même dans le récit ? Explique.</strong><div class="answer"><textarea id="c5" placeholder="Réécriture et explication."></textarea></div></div>
+<div class="q"><strong>6. Résume l’incident en trois ou quatre phrases en utilisant au moins une fois chacun des trois temps.</strong><div class="answer"><textarea id="c6" placeholder="Ton résumé…"></textarea></div></div>
+<p class="hint small">Ces questions demandent une réponse construite. Il n’y a pas de correction automatique : le professeur évalue la compréhension, la précision et la justification.</p><div class="row"><button class="copy-results" data-copy-results="comprehension">Copier les résultats</button></div>
 </section>
 
 <section id="production">
 <div class="kicker">07 · TRANSFÉRER</div><h2>Construire ton propre récit</h2>
 <h3>Préparation : organiser les événements</h3><p>Imagine une sortie scolaire, une activité sportive ou un travail de groupe qui ne s’est pas déroulé comme prévu. Note les éléments avant de rédiger.</p>
-<div class="q"><strong>Le contexte : où, quand, avec qui ?</strong><div class="answer"><textarea id="p1" placeholder="Décris la situation de départ."></textarea><button class="copy" data-copy="p1">Copier</button></div></div>
-<div class="q"><strong>Le déroulement : que s’est-il passé ?</strong><div class="answer"><textarea id="p2" placeholder="Note les événements principaux."></textarea><button class="copy" data-copy="p2">Copier</button></div></div>
-<div class="q"><strong>Ce qui avait eu lieu avant le moment principal</strong><div class="answer"><textarea id="p3" placeholder="Quelles actions étaient déjà terminées ?"></textarea><button class="copy" data-copy="p3">Copier</button></div></div>
+<div class="q"><strong>Le contexte : où, quand, avec qui ?</strong><div class="answer"><textarea id="p1" placeholder="Décris la situation de départ."></textarea></div></div>
+<div class="q"><strong>Le déroulement : que s’est-il passé ?</strong><div class="answer"><textarea id="p2" placeholder="Note les événements principaux."></textarea></div></div>
+<div class="q"><strong>Ce qui avait eu lieu avant le moment principal</strong><div class="answer"><textarea id="p3" placeholder="Quelles actions étaient déjà terminées ?"></textarea></div></div>
 <h3>Production écrite</h3><p>Rédige un récit cohérent d’environ 12 à 15 phrases. Fais comprendre l’ordre des événements et utilise les trois temps du passé. Évite de placer le plus-que-parfait simplement parce qu’une phrase contient « avant » : il doit exprimer une véritable antériorité par rapport à un repère passé.</p>
 <div class="checks"><label><input type="checkbox"> J’ai installé le contexte et les circonstances.</label><label><input type="checkbox"> J’ai utilisé l’imparfait pour le décor, l’état, l’habitude ou une action en cours.</label><label><input type="checkbox"> J’ai utilisé le passé composé pour les événements principaux.</label><label><input type="checkbox"> J’ai utilisé le plus-que-parfait pour une action antérieure à un repère passé.</label><label><input type="checkbox"> J’ai rendu la chronologie compréhensible avec des connecteurs.</label><label><input type="checkbox"> J’ai relu les accords, les auxiliaires, la négation et la ponctuation.</label></div>
-<div class="answer"><textarea id="production-text" placeholder="Rédige ton récit ici…" style="min-height:230px"></textarea><button class="copy" data-copy="production-text">Copier</button></div>
-<h3>Préparation à l’oral</h3><p>Raconte ton histoire sans lire chaque phrase. Ensuite, choisis deux formes verbales et explique pourquoi tu as utilisé ces temps.</p><div class="answer"><textarea id="oral-notes" placeholder="Note les deux formes et prépare tes explications."></textarea><button class="copy" data-copy="oral-notes">Copier</button></div>
+<div class="answer"><textarea id="production-text" placeholder="Rédige ton récit ici…" style="min-height:230px"></textarea></div>
+<h3>Préparation à l’oral</h3><p>Raconte ton histoire sans lire chaque phrase. Ensuite, choisis deux formes verbales et explique pourquoi tu as utilisé ces temps.</p><div class="answer"><textarea id="oral-notes" placeholder="Note les deux formes et prépare tes explications."></textarea></div><div class="row"><button class="copy-results" data-copy-results="production">Copier les résultats</button></div>
 </section>
 
 <section id="bilan">
 <div class="kicker">08 · AUTOÉVALUATION</div><h2>Ce que je sais faire</h2><p class="muted">Coche les compétences que tu peux réaliser sans aide.</p>
 <div class="checks"><label><input type="checkbox"> Je distingue le passé composé, l’imparfait et le plus-que-parfait dans un récit.</label><label><input type="checkbox"> Je peux expliquer l’ordre de deux événements passés.</label><label><input type="checkbox"> Je forme le plus-que-parfait avec avoir et être.</label><label><input type="checkbox"> Je sais vérifier les accords étudiés.</label><label><input type="checkbox"> Je peux justifier le choix d’un temps à partir du contexte.</label><label><input type="checkbox"> Je peux écrire un récit cohérent en articulant les trois temps.</label></div>
-<h3>Ce que je dois encore travailler</h3><div class="answer"><textarea id="difficulties" placeholder="Note les points à revoir…"></textarea><button class="copy" data-copy="difficulties">Copier</button></div>
-<div class="row"><button onclick="window.print()">Imprimer la fiche</button><button id="copyAll">Copier toutes mes réponses</button><button id="resetAll">Tout réinitialiser</button><span id="copyStatus" class="status" aria-live="polite"></span></div>
+<h3>Ce que je dois encore travailler</h3><div class="answer"><textarea id="difficulties" placeholder="Note les points à revoir…"></textarea></div>
+<div class="row"><button class="copy-results" data-copy-results="bilan">Copier le bilan</button><button onclick="window.print()">Imprimer la fiche</button><button id="copyAll">Copier toutes mes réponses</button><button id="resetAll">Tout réinitialiser</button><span id="copyStatus" class="status" aria-live="polite"></span></div>
 </section>
 </div></div>
 <footer>FRANÇAIS · CE1D — Les temps du passé</footer>
@@ -137,38 +137,108 @@ f4:['étiez parties','etiez parties'],f5:['avaient perdu'],f6:['était sortie','
 f7:['s’étaient trompées de chemin','s etaient trompees de chemin','s’étaient trompées','s etaient trompees'],
 f8:['n’avait pas reçu','n avait pas recu']
 },
-temps:{t1a:['est arrivé','est arrive'],t1b:['attendaient'],t2a:['visitions'],t2b:['a retenti','est retentie'],t3:['avait laissé','avait laisse'],t4a:['participait'],t4b:['avons construit'],t4c:['avons présentée','avons presentee'],t5a:['a demandé','a demande'],t5b:['n’avaient pas suivi','n avaient pas suivi']},
+temps:{t1a:['est arrivé','est arrive'],t1b:['attendaient'],t2a:['visitions'],t2b:['a retenti'],t3:['avait laissé','avait laisse'],t4a:['participait'],t4b:['avons construit'],t4c:['avons présentée','avons presentee'],t5a:['a demandé','a demande'],t5b:['n’avaient pas suivi','n avaient pas suivi']},
 texte:{s1:['a préparé','a prepare'],s2:['travaillaient'],s3:['avait'],s4:['sommes arrivés','sommes arrivees'],s5:['a installé','a installe'],s6:['avait terminé','avait termine'],s7:['sont entrés','sont entrees'],s8:['expliquaient'],s9:['répondaient','repondaient'],s10:['a interrompu'],s11:['s’était débranché','s etait debranche'],s12:['cherchait'],s13:['attendaient'],s14:['a retrouvé','a retrouve'],s15:['avons repris'],s16:['s’est terminée','s est terminee']}
 };
 const explanations={
-diagnostic:'1B : « terminé » est le participe passé. 2A : sortir se conjugue ici avec être. 3B : « tous les étés » indique une habitude. 4B : le spectacle avait commencé avant notre entrée. 5A : la négation encadre l’auxiliaire.',
-formation:'1 avait commencé ; 2 avait dormi ; 3 les avais rangées (COD « les » placé avant le verbe, féminin pluriel) ; 4 étiez parties ; 5 avaient perdu ; 6 était sortie ; 7 s’étaient trompées ; 8 n’avait pas reçu.',
-temps:'1 est arrivé / attendaient : événement ponctuel et action déjà en cours depuis vingt minutes. 2 visitions / a retenti : action en cours interrompue par un événement. 3 avait laissé : le fait de laisser le carnet est antérieur au moment où Léa ne le trouve pas. 4 participait / avons construit / avons présentée : habitude, puis événements délimités l’année dernière. 5 a demandé / n’avaient pas suivi : le professeur demande ensuite ; les étapes n’avaient pas été suivies auparavant.',
-texte:'1 a préparé ; 2 travaillaient ; 3 avait ; 4 sommes arrivés ; 5 a installé ; 6 avait terminé ; 7 sont entrés ; 8 expliquaient ; 9 répondaient ; 10 a interrompu ; 11 s’était débranché ; 12 cherchait ; 13 attendaient ; 14 a retrouvé ; 15 avons repris ; 16 s’est terminée. Les formes sont choisies selon le contexte du récit : actions délimitées au passé composé, cadre/actions en cours à l’imparfait, antériorité au plus-que-parfait.'
+diagnostic:[
+'Le participe passé est la forme verbale utilisée avec l’auxiliaire dans les temps composés.',
+'Certains verbes se conjuguent avec être : vérifie l’auxiliaire et l’accord du participe passé avec le sujet.',
+'L’imparfait peut exprimer une habitude ou une action répétée dans le passé.',
+'Le plus-que-parfait sert à situer une action avant un autre événement passé.',
+'Dans une négation au temps composé, ne… pas encadre l’auxiliaire.'
+],
+formation:[
+'Le plus-que-parfait se forme avec l’auxiliaire à l’imparfait et le participe passé.',
+'Les verbes qui se conjuguent avec avoir gardent cet auxiliaire au plus-que-parfait.',
+'Lorsque le COD est placé avant le participe passé construit avec avoir, il faut vérifier l’accord avec ce COD.',
+'Avec être, le participe passé s’accorde avec le sujet en genre et en nombre.',
+'Avec avoir, le participe passé ne s’accorde généralement pas avec le sujet.',
+'Pour les verbes de déplacement construits avec être, vérifie l’accord avec le sujet.',
+'Pour les verbes pronominaux, identifie la fonction du pronom réfléchi avant de faire l’accord.',
+'Dans une phrase négative, ne… pas encadre l’auxiliaire conjugué.'
+],
+temps:[
+'Le passé composé présente un événement délimité ; l’imparfait présente une action en cours ou une durée.',
+'L’imparfait installe une action en cours ; le passé composé peut présenter l’événement qui survient.',
+'Le plus-que-parfait marque une action antérieure au moment passé où le personnage constate la situation.',
+'L’imparfait peut exprimer une habitude ; le passé composé présente des événements précis et achevés.',
+'Le plus-que-parfait exprime ici ce qui s’est produit avant la demande du professeur.'
+],
+texte:[
+'Le passé composé présente les événements principaux et délimités du récit.',
+'L’imparfait sert à décrire une situation, une durée ou des actions en cours.',
+'Le plus-que-parfait situe un fait avant un autre repère passé.',
+'Pour choisir, observe si le verbe fait avancer le récit, décrit le contexte ou exprime une antériorité.',
+'Vérifie également l’auxiliaire et les accords du participe passé.'
+]
 };
 function norm(s){return (s||'').toLocaleLowerCase('fr').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[’']/g,"'").replace(/\s+/g,' ').trim().replace(/[.!?]$/,'')}
 function setFeedback(id,html,kind=''){const el=document.getElementById(id);el.className='feedback '+kind;el.innerHTML=html}
 function checkGroup(group){
- if(group==='diagnostic'){let n=0,ok=0,missing=0;Object.entries(keys.diagnostic).forEach(([id,key])=>{const v=document.querySelector(`input[name="${id}"]:checked`);if(!v){missing++;return;}n++;if(v.value===key)ok++;});setFeedback('diagnostic-feedback',`${n} réponse(s) donnée(s), ${ok} correcte(s), ${missing} sans réponse.<br>${explanations.diagnostic}`,n===5&&ok===5?'good':'');return;}
+ if(group==='diagnostic'){
+   let n=0,ok=0,missing=0;const lines=[];
+   Object.entries(keys.diagnostic).forEach(([id,key],i)=>{
+     const v=document.querySelector(`input[name="${id}"]:checked`);
+     if(!v){missing++;lines.push(`<div>Question ${i+1} : sans réponse.</div>`);return;}
+     n++;const valid=v.value===key;if(valid)ok++;
+     lines.push(`<div>Question ${i+1} : ${valid?'Réponse correcte.':'Réponse à revoir.'} ${explanations.diagnostic[i]}</div>`);
+   });
+   setFeedback('diagnostic-feedback',`<strong>Résultat : ${ok} réponse(s) correcte(s) sur ${n} réponse(s) donnée(s).</strong><br>${lines.join('')}`,n===5&&ok===5?'good':'');return;
+ }
  const groupKeys=keys[group];let count=0,ok=0,missing=0;const lines=[];
- Object.entries(groupKeys).forEach(([id,accepted])=>{const el=document.getElementById(id);const value=el?.value||'';if(!value.trim()){missing++;return;}count++;const valid=accepted.some(a=>norm(a)===norm(value));if(valid)ok++;lines.push(`<div>${id.toUpperCase()} : ${valid?'✓ Correct':'À revoir'}</div>`);});
- setFeedback(group+'-feedback',`${count} réponse(s) saisie(s), ${ok} correcte(s), ${missing} vide(s).<br>${lines.join('')}<p>Les justifications et productions libres ne sont pas notées automatiquement.</p>`,count>0&&ok===count&&missing===0?'good':'');
-}
-function showKey(group){
- if(group==='diagnostic'){setFeedback('diagnostic-feedback','<strong>Corrigé</strong><br>1B · 2A · 3B · 4B · 5A<br><br>'+explanations.diagnostic);return;}
- const g=keys[group];const rows=Object.entries(g).map(([id,a])=>`<div><b>${id.toUpperCase()}</b> — ${a[0]}</div>`).join('');
- setFeedback(group+'-feedback',`<strong>Corrigé indicatif</strong><br>${rows}<br><br>${explanations[group]}`);
+ Object.entries(groupKeys).forEach(([id,accepted],i)=>{
+   const el=document.getElementById(id);const value=el?.value||'';
+   if(!value.trim()){missing++;lines.push(`<div>${id.toUpperCase()} : sans réponse.</div>`);return;}
+   count++;const valid=accepted.some(a=>norm(a)===norm(value));if(valid)ok++;
+   const explanation=(explanations[group]||[])[i]||'Relis la règle et vérifie la construction de la forme verbale.';
+   lines.push(`<div>${id.toUpperCase()} : ${valid?'Réponse correcte.':'Réponse à revoir.'} ${explanation}</div>`);
+ });
+ setFeedback(group+'-feedback',`<strong>${ok} réponse(s) correcte(s) sur ${count} réponse(s) donnée(s) ; ${missing} vide(s).</strong><br>${lines.join('')}<p>Les justifications et productions libres ne sont pas notées automatiquement.</p>`,count>0&&ok===count&&missing===0?'good':'');
 }
 function resetGroup(group){const sec=document.getElementById(group);sec.querySelectorAll('input[type="text"],textarea').forEach(x=>x.value='');sec.querySelectorAll('input[type="radio"]').forEach(x=>x.checked=false);sec.querySelectorAll('.feedback').forEach(x=>{x.innerHTML='';x.className='feedback'});updateProgress();}
 document.addEventListener('click',async e=>{
  const check=e.target.closest('[data-check]');if(check){checkGroup(check.dataset.check);return;}
- const show=e.target.closest('[data-show]');if(show){showKey(show.dataset.show);return;}
  const reset=e.target.closest('[data-reset]');if(reset){resetGroup(reset.dataset.reset);return;}
- const cp=e.target.closest('[data-copy]');if(cp){const el=document.getElementById(cp.dataset.copy);if(!el)return;try{await navigator.clipboard.writeText(el.value||'');cp.textContent='Copié ✓';cp.classList.add('done');setTimeout(()=>{cp.textContent='Copier';cp.classList.remove('done')},1200);}catch(err){el.focus();el.select?.();cp.textContent='Sélectionné';setTimeout(()=>cp.textContent='Copier',1200);}return;}
+ const cp=e.target.closest('[data-copy-results]');if(cp){const group=cp.dataset.copyResults;const report=buildActivityReport(group);try{await navigator.clipboard.writeText(report);cp.textContent='Résultats copiés ✓';cp.classList.add('done');setTimeout(()=>{cp.textContent='Copier les résultats';cp.classList.remove('done')},1500);}catch(err){const box=document.createElement('textarea');box.value=report;box.style.position='fixed';box.style.opacity='0';document.body.appendChild(box);box.select();let copied=false;try{copied=document.execCommand('copy')}catch(_){}box.remove();cp.textContent=copied?'Résultats copiés ✓':'Copie indisponible';setTimeout(()=>cp.textContent='Copier les résultats',1600);}return;}
 });
+
+function buildActivityReport(group){
+ const section=document.getElementById(group);const title=section.querySelector('h2')?.textContent.trim()||group;
+ const out=[`ACTIVITÉ : ${title}`,`SECTION : ${group.toUpperCase()}`,''];
+ const auto=keys[group]||{};
+ const checked=!!section.querySelector('.feedback:not(:empty)');
+ function resultFor(id,value){
+   if(!Object.prototype.hasOwnProperty.call(auto,id))return value.trim()?'Réponse à examiner (non corrigée automatiquement)':'Sans réponse';
+   if(!value.trim())return 'Sans réponse';
+   if(!checked)return 'Non vérifiée';
+   const valid=auto[id].some(a=>norm(a)===norm(value));
+   return valid?'CORRECTE':'ERREUR — forme à revoir (corrigé non affiché)';
+ }
+ if(group==='diagnostic'){
+   const qs=[...section.querySelectorAll('.q')];
+   qs.forEach((q,i)=>{const n=i+1;const prompt=q.querySelector('strong')?.textContent.trim()||`Question ${n}`;const chosen=q.querySelector('input[type=radio]:checked');const answer=chosen?chosen.parentElement.textContent.trim():'(sans réponse)';const key=auto['d'+n];const status=!chosen?'Sans réponse':!checked?'Non vérifiée':chosen.value===key?'CORRECTE':'ERREUR — choix à revoir (corrigé non affiché)';out.push(`QUESTION ${n} — ${prompt}`,`Réponse de l’élève : ${answer}`,`Résultat : ${status}`,'');});
+   return out.join('\n');
+ }
+ let number=0;const seen=new Set();
+ // Questions explicitly grouped in the page.
+ section.querySelectorAll('.q').forEach(q=>{
+   number++;const prompt=q.querySelector('strong')?.textContent.trim()||`Question ${number}`;out.push(`QUESTION ${number} — ${prompt}`);
+   const controls=[...q.querySelectorAll('input[type="text"],textarea')];
+   controls.forEach((el,j)=>{seen.add(el.id);const value=el.value.trim();const label=el.placeholder||el.id;out.push(`Réponse ${j+1} (${label}) : ${value||'(sans réponse)'}`);if(auto[el.id])out.push(`Résultat : ${resultFor(el.id,value)}`);});
+   out.push('');
+ });
+ // Cloze text inputs are embedded in paragraphs, not .q blocks.
+ const loose=[...section.querySelectorAll('input[type="text"],textarea')].filter(el=>!seen.has(el.id));
+ if(loose.length){loose.forEach((el,i)=>{number++;const context=el.closest('p')?.innerText?.replace(/\s+/g,' ').trim()||el.placeholder||'Compléter le texte';const value=el.value.trim();out.push(`QUESTION ${number} — ${context}`,`Réponse : ${value||'(sans réponse)'}`,`Résultat : ${resultFor(el.id,value)}`,'');});}
+ // Include verification state only; never include the answer key.
+ if(checked)out.push('État : activité vérifiée. Aucun corrigé n’est inclus dans ce rapport.');else out.push('État : réponses copiées avant vérification.');
+ return out.join('\n');
+}
+
 document.addEventListener('input',updateProgress);document.addEventListener('change',updateProgress);
 function updateProgress(){const fields=[...document.querySelectorAll('input[type="text"],textarea')];const radios=document.querySelectorAll('input[type="radio"]:checked');const checks=document.querySelectorAll('input[type="checkbox"]:checked');const total=fields.length+5+document.querySelectorAll('input[type="checkbox"]').length;const done=fields.filter(x=>x.value.trim()).length+radios.length+checks.length;const pct=Math.min(100,Math.round(done/total*100));document.getElementById('pct').textContent=pct+' %';document.getElementById('bar').style.width=pct+'%';}
-document.getElementById('copyAll').addEventListener('click',async()=>{const els=[...document.querySelectorAll('input[type="text"],textarea')];const fields=els.map(e=>(e.placeholder||e.id)+': '+(e.value||'(sans réponse)'));document.querySelectorAll('input[type=radio]:checked').forEach(r=>fields.push(r.name+': '+r.parentElement.textContent.trim()));const content=fields.join('\n');try{await navigator.clipboard.writeText(content);document.getElementById('copyStatus').textContent='Réponses copiées ✓';}catch(e){document.getElementById('copyStatus').textContent='Copie indisponible dans ce navigateur.';}});
+document.getElementById('copyAll').addEventListener('click',async()=>{const sections=['diagnostic','formation','temps','texte','comprehension','production','bilan'];const content=sections.map(id=>document.getElementById(id)?buildActivityReport(id):'').filter(Boolean).join('\n\n==============================\n\n');try{await navigator.clipboard.writeText(content);document.getElementById('copyStatus').textContent='Toutes les réponses copiées ✓';}catch(e){document.getElementById('copyStatus').textContent='Copie indisponible dans ce navigateur.';}});
 document.getElementById('resetAll').addEventListener('click',()=>{if(!confirm('Effacer toutes les réponses et les sélections ?'))return;document.querySelectorAll('input[type="text"],textarea').forEach(x=>x.value='');document.querySelectorAll('input[type="radio"],input[type="checkbox"]').forEach(x=>x.checked=false);document.querySelectorAll('.feedback').forEach(x=>{x.innerHTML='';x.className='feedback'});document.querySelectorAll('.status').forEach(x=>x.textContent='');updateProgress();});
 updateProgress();
 </script>
