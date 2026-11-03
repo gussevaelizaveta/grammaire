@@ -115,7 +115,7 @@ summary{cursor:pointer;font-size:16px}
  </div>
  <div class="card">
   <h3>Comment utiliser le site ?</h3>
-  <ul><li>Réponds d'abord sans consulter les fiches mémo.</li><li>Dans les exercices fermés, clique sur <strong>Vérifier</strong> : une réponse erronée déclenche un indice, jamais la solution.</li><li>Dans les exercices ouverts, rédige directement dans les champs.</li><li>Utilise <strong>Copier</strong> à la fin de chaque exercice pour récupérer toutes tes réponses.</li></ul>
+  <ul><li>Réponds d'abord sans consulter les fiches mémo.</li><li>Dans les exercices fermés, clique sur <strong>Vérifier</strong> : une réponse erronée déclenche un indice, jamais la solution.</li><li>Dans les exercices ouverts, rédige directement dans les champs.</li><li>Utilise <strong>Copier l’exercice</strong> pour récupérer l’énoncé et les consignes.</li></ul>
   <p class="small">Les réponses libres seront discutées avec ton professeur : plusieurs formulations peuvent être pertinentes si elles sont justifiées par le texte.</p>
  </div>
  <div class="actions"><button class="btn" onclick="go('e1')">Commencer les exercices</button></div>
@@ -126,7 +126,7 @@ summary{cursor:pointer;font-size:16px}
  <div class="card" id="quiz1">
   <div class="instruction">Consigne · Choisis une catégorie pour chaque proposition</div>
   <div id="questions1"></div>
-  <div class="actions"><button class="btn" onclick="checkQuiz('quiz1')">Vérifier</button><button class="btn secondary" onclick="copyQuiz('quiz1')">Copier</button><span class="status" id="status-quiz1"></span></div>
+  <div class="actions"><button class="btn" onclick="checkQuiz('quiz1')">Vérifier</button><button class="btn secondary" onclick="copyExercise(this)">Copier l’exercice</button><span class="status" id="status-quiz1"></span></div>
  </div>
 </section>
 
@@ -134,7 +134,7 @@ summary{cursor:pointer;font-size:16px}
  <div class="section-head"><div class="eyebrow">Atelier 02 · Distinguer</div><h2>Résumé, repérage ou analyse ?</h2><p class="lead">Un résumé raconte. Un repérage nomme un outil. Une analyse relie l'écriture à un effet et à un sens.</p></div>
  <div class="card" id="quiz2">
   <div class="instruction">Consigne · Identifie le geste dominant</div><div id="questions2"></div>
-  <div class="actions"><button class="btn" onclick="checkQuiz('quiz2')">Vérifier</button><button class="btn secondary" onclick="copyQuiz('quiz2')">Copier</button><span class="status" id="status-quiz2"></span></div>
+  <div class="actions"><button class="btn" onclick="checkQuiz('quiz2')">Vérifier</button><button class="btn secondary" onclick="copyExercise(this)">Copier l’exercice</button><span class="status" id="status-quiz2"></span></div>
  </div>
 </section>
 
@@ -156,15 +156,15 @@ Elle avait une amie riche, une camarade de couvent qu’elle ne voulait plus all
   <div class="instruction">Consigne · Observe avant de rédiger</div>
   <label class="label">1. Note trois détails qui te semblent importants</label><textarea id="e3a" placeholder="Je remarque que…"></textarea>
   <label class="label">2. Quelle idée générale peux-tu formuler à partir de ces détails ?</label><textarea id="e3b" placeholder="Dans cet extrait, …"></textarea>
-  <label class="label">3. Pourquoi cette formulation est-elle plus analytique qu'un simple résumé ?</label><textarea id="e3c" placeholder="Cette idée permet de démontrer que…"></textarea>
-  <div class="actions"><button class="btn secondary" onclick="copyFields(['e3a','e3b','e3c'],'Atelier 03')">Copier</button><span class="status" id="status-e3"></span></div>
+  <label class="label">3. Comment le contraste entre la réalité quotidienne de Mathilde et l’univers luxueux dont elle rêve révèle-t-il son insatisfaction ?</label><textarea id="e3c" placeholder="Le contraste entre… et… révèle que…"></textarea>
+  <div class="actions"><button class="btn" onclick="checkWritten(['e3a','e3b','e3c'],'status-e3','Vérifie que tes observations sont précises et que ton idée explique le contraste entre la réalité quotidienne de Mathilde et l’univers luxueux dont elle rêve.')">Vérifier</button><button class="btn secondary" onclick="copyExercise(this)">Copier l’exercice</button><span class="status" id="status-e3"></span></div>
  </div>
  <div class="card">
   <div class="instruction">Mini-défi · Éviter les formulations trop vagues</div>
   <p>Transforme chacune de ces formulations en une idée d'analyse plus précise.</p>
   <label class="label">« Mathilde est malheureuse. »</label><textarea id="e3d" placeholder="Reformule…"></textarea>
   <label class="label">« Mathilde imagine des salons luxueux. »</label><textarea id="e3e" placeholder="Reformule…"></textarea>
-  <div class="actions"><button class="btn secondary" onclick="copyFields(['e3d','e3e'],'Mini-défi · Atelier 03')">Copier</button></div>
+  <div class="actions"><button class="btn" onclick="checkWritten(['e3d','e3e'],'status-e3mini','Chaque reformulation doit dépasser le constat général et expliquer ce que le détail révèle sur Mathilde.')">Vérifier</button><button class="btn secondary" onclick="copyExercise(this)">Copier l’exercice</button><span class="status" id="status-e3mini"></span></div>
  </div>
 </section>
 
@@ -172,13 +172,13 @@ Elle avait une amie riche, une camarade de couvent qu’elle ne voulait plus all
  <div class="section-head"><div class="eyebrow">Atelier 04 · Justifier</div><h2>Choisir la citation pertinente</h2><p class="lead">Une citation doit prouver l’idée annoncée. Une belle image n'est pas forcément la meilleure preuve.</p></div>
  <div class="card" id="quiz4">
   <div class="instruction">Consigne · Choisis la citation qui soutient le mieux chaque idée</div><div id="questions4"></div>
-  <div class="actions"><button class="btn" onclick="checkQuiz('quiz4')">Vérifier</button><button class="btn secondary" onclick="copyQuiz('quiz4')">Copier</button><span class="status" id="status-quiz4"></span></div>
+  <div class="actions"><button class="btn" onclick="checkQuiz('quiz4')">Vérifier</button><button class="btn secondary" onclick="copyExercise(this)">Copier l’exercice</button><span class="status" id="status-quiz4"></span></div>
  </div>
  <div class="card">
   <h3>À toi de justifier</h3>
   <p>Choisis une des deux idées précédentes et explique pourquoi la citation retenue la démontre mieux que les autres.</p>
   <textarea id="e4open" placeholder="La citation est pertinente parce que…"></textarea>
-  <div class="actions"><button class="btn secondary" onclick="copyFields(['e4open'],'Justification · Atelier 04')">Copier</button></div>
+  <div class="actions"><button class="btn" onclick="checkWritten(['e4open'],'status-e4open','Ta justification doit relier précisément la citation à l’idée choisie.')">Vérifier</button><button class="btn secondary" onclick="copyExercise(this)">Copier l’exercice</button><span class="status" id="status-e4open"></span></div>
  </div>
 </section>
 
@@ -186,7 +186,7 @@ Elle avait une amie riche, une camarade de couvent qu’elle ne voulait plus all
  <div class="section-head"><div class="eyebrow">Atelier 05 · Identifier</div><h2>Identifier les procédés</h2><p class="lead">Observe précisément la forme : les mots, les temps, la construction de la phrase et les images.</p></div>
  <div class="card" id="quiz5">
   <div class="instruction">Consigne · Sélectionne l'analyse la plus précise</div><div id="questions5"></div>
-  <div class="actions"><button class="btn" onclick="checkQuiz('quiz5')">Vérifier</button><button class="btn secondary" onclick="copyQuiz('quiz5')">Copier</button><span class="status" id="status-quiz5"></span></div>
+  <div class="actions"><button class="btn" onclick="checkQuiz('quiz5')">Vérifier</button><button class="btn secondary" onclick="copyExercise(this)">Copier l’exercice</button><span class="status" id="status-quiz5"></span></div>
  </div>
 </section>
 
@@ -194,14 +194,14 @@ Elle avait une amie riche, une camarade de couvent qu’elle ne voulait plus all
  <div class="section-head"><div class="eyebrow">Atelier 06 · Relier</div><h2>Associer citation et procédé</h2><p class="lead">Repère l'élément linguistique réellement présent dans chaque extrait. Ne confonds pas le procédé avec son effet possible.</p></div>
  <div class="card" id="quiz6">
   <div class="instruction">Consigne · Choisis le procédé correspondant à la citation</div><div id="questions6"></div>
-  <div class="actions"><button class="btn" onclick="checkQuiz('quiz6')">Vérifier</button><button class="btn secondary" onclick="copyQuiz('quiz6')">Copier</button><span class="status" id="status-quiz6"></span></div>
+  <div class="actions"><button class="btn" onclick="checkQuiz('quiz6')">Vérifier</button><button class="btn secondary" onclick="copyExercise(this)">Copier l’exercice</button><span class="status" id="status-quiz6"></span></div>
  </div>
  <div class="card">
   <h3>Repérage autonome</h3>
   <p>Dans l’extrait de « La Parure » de l’atelier 03, relève deux autres procédés ou choix d’écriture. Nomme-les avec précision.</p>
   <label class="label">Premier relevé : citation et procédé</label><textarea id="e6a" placeholder="« … » : …"></textarea>
   <label class="label">Deuxième relevé : citation et procédé</label><textarea id="e6b" placeholder="« … » : …"></textarea>
-  <div class="actions"><button class="btn secondary" onclick="copyFields(['e6a','e6b'],'Repérage autonome · Atelier 06')">Copier</button></div>
+  <div class="actions"><button class="btn" onclick="checkWritten(['e6a','e6b'],'status-e6open','Pour chaque relevé, indique une citation exacte puis nomme un procédé réellement présent.')">Vérifier</button><button class="btn secondary" onclick="copyExercise(this)">Copier l’exercice</button><span class="status" id="status-e6open"></span></div>
  </div>
 </section>
 
@@ -214,14 +214,14 @@ Elle avait une amie riche, une camarade de couvent qu’elle ne voulait plus all
   <label class="label">1. Quel effet les phrases courtes produisent-elles dans l'extrait 1 ?</label><textarea id="e7a" placeholder="Le rythme…"></textarea>
   <label class="label">2. Quel effet produisent-elles dans l'extrait 2 ?</label><textarea id="e7b" placeholder="Le rythme…"></textarea>
   <label class="label">3. Quels éléments du contexte expliquent cette différence ?</label><textarea id="e7c" placeholder="Dans le premier extrait… tandis que…"></textarea>
-  <div class="actions"><button class="btn secondary" onclick="copyFields(['e7a','e7b','e7c'],'Atelier 07')">Copier</button></div>
+  <div class="actions"><button class="btn" onclick="checkWritten(['e7a','e7b','e7c'],'status-e7a','Compare les effets des phrases courtes et explique la différence par le contexte : actions rapides dans le premier extrait, arrêt ou vide dans le second.')">Vérifier</button><button class="btn secondary" onclick="copyExercise(this)">Copier l’exercice</button><span class="status" id="status-e7a"></span></div>
  </div>
  <div class="card">
   <div class="passage-title">Nouvelle situation · La gare</div>
   <div class="text-passage">Le quai se vidait peu à peu. Sur le banc, un bouquet de fleurs fanées reposait à côté d'un billet froissé. Le train était parti depuis longtemps. Il regardait les rails sans bouger.</div>
   <label class="label">4. Choisis un détail précis et décris l'effet qu'il produit dans ce passage.</label><textarea id="e7d" placeholder="Le détail « … » crée une impression de…"></textarea>
   <label class="label">5. Explique pourquoi cet effet est lié au contexte, et non au procédé seul.</label><textarea id="e7e" placeholder="Dans ce passage, …"></textarea>
-  <div class="actions"><button class="btn secondary" onclick="copyFields(['e7d','e7e'],'Nouvelle situation · Atelier 07')">Copier</button></div>
+  <div class="actions"><button class="btn" onclick="checkWritten(['e7d','e7e'],'status-e7b','Appuie-toi sur un détail précis et justifie l’effet par les autres éléments du passage. Ne déduis pas une histoire que le texte ne raconte pas.')">Vérifier</button><button class="btn secondary" onclick="copyExercise(this)">Copier l’exercice</button><span class="status" id="status-e7b"></span></div>
  </div>
 </section>
 
@@ -229,7 +229,7 @@ Elle avait une amie riche, une camarade de couvent qu’elle ne voulait plus all
  <div class="section-head"><div class="eyebrow">Atelier 08 · Interpréter</div><h2>Effet ou interprétation ?</h2><p class="lead">L'effet décrit ce que le lecteur ressent ou perçoit. L'interprétation propose ce que ces éléments peuvent signifier dans le texte.</p></div>
  <div class="card" id="quiz8">
   <div class="instruction">Partie A · Classe les propositions</div><div id="questions8"></div>
-  <div class="actions"><button class="btn" onclick="checkQuiz('quiz8')">Vérifier</button><button class="btn secondary" onclick="copyQuiz('quiz8')">Copier</button><span class="status" id="status-quiz8"></span></div>
+  <div class="actions"><button class="btn" onclick="checkQuiz('quiz8')">Vérifier</button><button class="btn secondary" onclick="copyExercise(this)">Copier l’exercice</button><span class="status" id="status-quiz8"></span></div>
  </div>
  <div class="card">
   <div class="instruction">Partie B · Construis le raisonnement</div>
@@ -237,7 +237,7 @@ Elle avait une amie riche, une camarade de couvent qu’elle ne voulait plus all
   <label class="label">1. Quel effet ces éléments produisent-ils sur le lecteur ?</label><textarea id="e8a" placeholder="Le lecteur perçoit…"></textarea>
   <label class="label">2. Quelle interprétation peux-tu proposer ?</label><textarea id="e8b" placeholder="On peut y voir…"></textarea>
   <label class="label">3. Ajoute une nuance : quelle autre lecture reste possible ?</label><textarea id="e8c" placeholder="On pourrait également penser que…"></textarea>
-  <div class="actions"><button class="btn secondary" onclick="copyFields(['e8a','e8b','e8c'],'Partie B · Atelier 08')">Copier</button></div>
+  <div class="actions"><button class="btn" onclick="checkWritten(['e8a','e8b','e8c'],'status-e8b','Distingue l’impression produite, le sens que tu proposes et une autre lecture compatible avec le passage.')">Vérifier</button><button class="btn secondary" onclick="copyExercise(this)">Copier l’exercice</button><span class="status" id="status-e8b"></span></div>
  </div>
 </section>
 
@@ -246,14 +246,14 @@ Elle avait une amie riche, une camarade de couvent qu’elle ne voulait plus all
  <div class="card" id="quiz9">
   <div class="instruction">Consigne · Choisis l'ordre logique des cinq éléments</div>
   <div class="question"><div class="qtitle">Quel enchaînement correspond à la méthode étudiée ?</div><div class="options" id="orderOptions"></div><div class="feedback" id="feedback-order"></div></div>
-  <div class="actions"><button class="btn" onclick="checkOrder()">Vérifier</button><button class="btn secondary" onclick="copyQuiz('quiz9')">Copier</button><span class="status" id="status-quiz9"></span></div>
+  <div class="actions"><button class="btn" onclick="checkOrder()">Vérifier</button><button class="btn secondary" onclick="copyExercise(this)">Copier l’exercice</button><span class="status" id="status-quiz9"></span></div>
  </div>
  <div class="card">
   <h3>Repérer les maillons manquants</h3>
   <p>Voici une analyse incomplète. Indique quels éléments de la chaîne sont absents ou insuffisamment développés.</p>
   <div class="text-passage">« Mathilde rêve d’une vie luxueuse. Elle songe aux grands salons. »</div>
   <textarea id="e9a" placeholder="Il manque… parce que…"></textarea>
-  <div class="actions"><button class="btn secondary" onclick="copyFields(['e9a'],'Maillons manquants · Atelier 09')">Copier</button></div>
+  <div class="actions"><button class="btn" onclick="checkWritten(['e9a'],'status-e9open','Repère ce qui manque dans la chaîne : citation exacte, procédé, effet et interprétation. L’idée est déjà esquissée, mais la preuve et son exploitation restent insuffisantes.')">Vérifier</button><button class="btn secondary" onclick="copyExercise(this)">Copier l’exercice</button><span class="status" id="status-e9open"></span></div>
  </div>
 </section>
 
@@ -291,7 +291,7 @@ Après que j’eus dîné dans cette famille amie, si calme, où j’étais reç
   <label class="label">Étape 5 · L'effet produit</label><textarea id="hwe" placeholder="Le lecteur perçoit…"></textarea>
   <label class="label">Étape 6 · Ton interprétation nuancée</label><textarea id="hwf" placeholder="On peut y voir…"></textarea>
   <label class="label">Étape 7 · Rédige ton paragraphe complet, sans aide</label><textarea id="hwg" style="min-height:190px" placeholder="Dans cet extrait, …"></textarea>
-  <div class="actions"><button class="btn secondary" onclick="copyFields(['hwa','hwb','hwc','hwd','hwe','hwf','hwg'],'Devoir à la maison · Texte B')">Copier tout le devoir</button><span class="status" id="status-homework"></span></div>
+  <div class="actions"><button class="btn" onclick="checkWritten(['hwa','hwb','hwc','hwd','hwe','hwf','hwg'],'status-homework','Vérifie que ton travail contient une idée, des citations exactes, des procédés, leurs effets et une interprétation nuancée. Ce contrôle vérifie la présence des étapes, pas la qualité littéraire de l’analyse.')">Vérifier</button><button class="btn secondary" onclick="copyExercise(this)">Copier l’exercice</button><span class="status" id="status-homework"></span></div>
   <p class="small">Avant de rendre ton travail, vérifie que ton paragraphe contient une idée, une preuve, un procédé, un effet et une interprétation reliés par des connecteurs.</p>
  </div>
 </section>
@@ -305,7 +305,7 @@ const labels=['Accueil','Les cinq éléments','Résumé, repérage ou analyse','
 let current=0,completed=new Set();
 const data={
  quiz1:[
-  {q:'« Mathilde aspire à une existence faite de luxe et de reconnaissance sociale. »',o:['Idée','Citation','Procédé','Effet','Interprétation'],a:0,h:'La phrase annonce ce que l’analyse cherche à démontrer.'},
+  {q:'Mathilde aspire à une existence faite de luxe et de reconnaissance sociale.',o:['Idée','Citation','Procédé','Effet','Interprétation'],a:0,h:'La phrase annonce ce que l’analyse cherche à démontrer.'},
   {q:'« Elle souffrait de la pauvreté de son logement »',o:['Idée','Citation','Procédé','Effet','Interprétation'],a:1,h:'La formulation reprend les mots exacts du texte.'},
   {q:'La répétition de « Elle songeait »',o:['Idée','Citation','Procédé','Effet','Interprétation'],a:2,h:'On nomme ici un choix d’écriture observable.'},
   {q:'Une impression d’accumulation et d’insatisfaction.',o:['Idée','Citation','Procédé','Effet','Interprétation'],a:3,h:'Cette formulation décrit une impression produite chez le lecteur.'},
@@ -325,13 +325,13 @@ const data={
  ],
  quiz5:[
   {q:'Dans « Elle souffrait sans cesse », quelle analyse est la plus précise ?',o:['Un imparfait qui inscrit la souffrance dans la durée','Un futur qui annonce un événement','Un impératif qui donne un ordre'],a:0,h:'Observe la forme verbale et la valeur de durée dans le contexte.'},
-  {q:'Dans « Elle songeait… Elle songeait… », quel procédé est présent ?',o:['Une anaphore / répétition en début de phrase','Une comparaison','Une question rhétorique'],a:0,h:'Repère la reprise du même groupe verbal.'},
+  {q:'Dans le passage, la reprise de « Elle songeait » au début de plusieurs phrases constitue quel procédé ?',o:['Une anaphore / répétition en début de phrase','Une comparaison','Une question rhétorique'],a:0,h:'Repère la reprise du même groupe verbal.'},
   {q:'Dans « pas de toilettes, pas de bijoux, rien », quel procédé domine ?',o:['Une accumulation avec négation','Une métaphore filée','Une gradation ascendante positive'],a:0,h:'Observe l’énumération des privations et la négation.'},
   {q:'Dans « les meubles fins portant des bibelots inestimables », quel champ lexical domine ?',o:['Celui du luxe et de la richesse','Celui de la guerre','Celui de la maladie'],a:0,h:'Regarde les adjectifs et les noms qui caractérisent les objets.'},
-  {q:'Dans « un sourire de sphinx », quelle figure est identifiable ?',o:['Une comparaison sans outil explicite / image métaphorique','Une hyperbole chiffrée','Une personnification du mobilier'],a:0,h:'L’expression associe le sourire à une figure énigmatique.'}
+  {q:'Dans « un sourire de sphinx », quelle figure est identifiable ?',o:['Une métaphore : le sourire est associé au sphinx','Une hyperbole chiffrée','Une personnification du mobilier'],a:0,h:'L’expression associe le sourire à une figure énigmatique.'}
  ],
  quiz6:[
-  {q:'« Elle songeait aux grands salons… »',o:['Répétition du verbe « songer » dans le passage','Comparaison introduite par « comme »','Discours direct'],a:0,h:'Observe la reprise de ce verbe dans plusieurs phrases.'},
+  {q:'Dans le passage, la reprise de « Elle songeait » au début de plusieurs phrases constitue quel procédé ?',o:['Répétition du verbe « songer » dans le passage','Comparaison introduite par « comme »','Discours direct'],a:0,h:'Observe la reprise de ce verbe dans plusieurs phrases.'},
   {q:'« pas de toilettes, pas de bijoux, rien »',o:['Accumulation et négation','Question indirecte','Comparaison'],a:0,h:'Repère l’énumération des éléments absents.'},
   {q:'« Elle souffrait sans cesse »',o:['Imparfait à valeur durative','Passé simple ponctuel','Futur antérieur'],a:0,h:'Le temps verbal présente un état qui se prolonge.'},
   {q:'« tentures orientales », « torchères de bronze », « fauteuils »',o:['Champ lexical du luxe','Champ lexical de la nature','Champ lexical du conflit'],a:0,h:'Les objets et matériaux évoquent un intérieur riche.'},
@@ -345,6 +345,26 @@ const data={
   {q:'« Le lecteur perçoit l’écart entre le quotidien modeste et le monde rêvé. »',o:['Effet','Interprétation'],a:0,h:'La formulation nomme une perception du lecteur.'}
  ]
 };
+function copyExercise(button){
+ const card=button.closest('.card');
+ if(!card)return;
+ const clone=card.cloneNode(true);
+ clone.querySelectorAll('.actions,.feedback,.status,button').forEach(el=>el.remove());
+ clone.querySelectorAll('textarea').forEach(el=>{el.textContent='';el.value='';});
+ clone.querySelectorAll('input').forEach(el=>{el.checked=false;});
+ const text=clone.innerText.replace(/\n{3,}/g,'\n\n').trim();
+ copyText(text,null);
+ const status=button.parentElement.querySelector('.status');
+ if(status)status.textContent='Énoncé copié.';
+}
+function checkWritten(ids,statusId,criteria){
+ const fields=ids.map(id=>document.getElementById(id));
+ const missing=fields.filter(el=>!el||!el.value.trim()).length;
+ const status=document.getElementById(statusId);
+ if(!status)return;
+ status.textContent=missing?`Il reste ${missing} réponse(s) à compléter. ${criteria}`:`Toutes les réponses sont renseignées. ${criteria}`;
+ status.style.color=missing?'var(--bad)':'var(--good)';
+}
 function buildNav(){
  const nav=document.getElementById('navlist');
  sections.forEach((id,i)=>{let b=document.createElement('button');b.className='navbtn'+(i===0?' active':'');b.id='nav-'+id;b.innerHTML=`<span class="navnum">${i===0?'•':String(i).padStart(2,'0')}</span><span>${labels[i]}</span>`;b.onclick=()=>go(id);nav.appendChild(b)});
