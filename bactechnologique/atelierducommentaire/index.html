@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atelier du commentaire — Bac technologique</title>
+<style>
+:root{
+ --cream:#F3EBDD;--paper:#FBF8F0;--wine:#702638;--wine2:#54202D;
+ --graphite:#343536;--muted:#77736C;--line:#DCD3C4;--blue:#496777;
+ --olive:#65785B;--plum:#806080;--good:#456B4D;--bad:#9B3E3E;
+ --shadow:0 10px 30px rgba(52,53,54,.07)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--graphite);font-family:Georgia,"Times New Roman",serif;line-height:1.55}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.topbar{background:var(--graphite);color:var(--cream);padding:13px max(22px,calc((100% - 1180px)/2));display:flex;justify-content:space-between;align-items:center;gap:15px;font:12px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.topbar strong{color:#E9C9C5;font-weight:700}
+.hero{max-width:1180px;margin:auto;padding:52px 24px 30px}
+.kicker{font:700 11px Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--wine)}
+h1{font-size:clamp(38px,6vw,66px);line-height:1.02;font-weight:400;margin:12px 0;color:var(--graphite);letter-spacing:-.035em}
+.subtitle{font-size:18px;color:var(--muted);max-width:690px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}
+.pill{border:1px solid var(--line);padding:6px 11px;border-radius:30px;font:11px Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.shell{max-width:1180px;margin:auto;padding:0 24px 70px;display:grid;grid-template-columns:245px minmax(0,1fr);gap:26px}
+.sidebar{position:sticky;top:14px;align-self:start;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:17px;box-shadow:var(--shadow);max-height:calc(100vh - 28px);overflow:auto}
+.side-title{font:700 10px Arial,sans-serif;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin:4px 8px 12px}
+.navbtn{display:flex;width:100%;text-align:left;align-items:flex-start;gap:10px;padding:10px 9px;border:0;background:transparent;border-radius:8px;color:var(--graphite);font:13px Arial,sans-serif;line-height:1.35}
+.navbtn:hover,.navbtn.active{background:#EFE5D8;color:var(--wine)}
+.navnum{font-weight:bold;color:var(--wine);min-width:19px}
+.navbtn.done .navnum:after{content:" ✓"}
+.progress-wrap{margin:14px 8px 5px}
+.progress-label{display:flex;justify-content:space-between;font:11px Arial,sans-serif;color:var(--muted);margin-bottom:7px}
+.progress{height:5px;background:#E5DED2;border-radius:10px;overflow:hidden}
+.progress>span{display:block;height:100%;width:0;background:var(--wine);transition:width .25s}
+main{min-width:0}
+.section{display:none;animation:fade .25s ease}
+.section.active{display:block}
+@keyframes fade{from{opacity:.45;transform:translateY(5px)}to{opacity:1;transform:none}}
+.section-head{padding:9px 0 18px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.section-head .eyebrow{font:700 10px Arial,sans-serif;letter-spacing:.18em;color:var(--wine);text-transform:uppercase}
+h2{font-size:clamp(28px,4vw,39px);font-weight:400;line-height:1.1;margin:8px 0}
+.lead{color:var(--muted);font-size:16px;max-width:780px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:22px;margin:16px 0;box-shadow:var(--shadow)}
+.card h3{font-size:21px;font-weight:400;margin:0 0 8px}
+.instruction{font:700 10px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+.small{font-size:13px;color:var(--muted)}
+.question{padding:16px 0;border-top:1px solid var(--line)}
+.question:first-of-type{border-top:0}
+.qtitle{font-size:17px;margin-bottom:10px}
+.options{display:grid;gap:8px}
+.option{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:#F4EFE5;border:1px solid #E6DDCF;border-radius:8px;font-size:15px;cursor:pointer}
+.option:hover{border-color:#B9A99A}
+.option input{accent-color:var(--wine);margin-top:5px}
+.option.correct{border-color:var(--good);background:#E8EFE6}
+.option.incorrect{border-color:var(--bad);background:#F4E8E4}
+.feedback{display:none;margin-top:9px;padding:10px 12px;border-radius:7px;font:13px/1.45 Arial,sans-serif}
+.feedback.show{display:block}
+.feedback.good{background:#E8EFE6;color:#315A3A}
+.feedback.bad{background:#F4E8E4;color:#803333}
+textarea,.textinput{width:100%;border:1px solid var(--line);border-radius:8px;background:#FFFCF6;padding:12px;color:var(--graphite);font-size:15px;resize:vertical;min-height:90px}
+.textinput{min-height:0}
+textarea:focus,.textinput:focus{outline:2px solid #B98791;border-color:var(--wine)}
+.label{display:block;font:700 11px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:13px 0 6px}
+.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:17px}
+.btn{border:1px solid var(--wine);background:var(--wine);color:white;border-radius:7px;padding:10px 17px;font:700 12px Arial,sans-serif;letter-spacing:.04em;min-width:118px;min-height:40px}
+.btn:hover{background:var(--wine2)}
+.btn.secondary{background:transparent;color:var(--wine)}
+.btn.secondary:hover{background:#F0E5E1}
+.btn:focus-visible,.navbtn:focus-visible{outline:3px solid #B98791;outline-offset:2px}
+.status{font:12px Arial,sans-serif;color:var(--muted);align-self:center}
+.text-passage{background:#F0E9DC;border-left:4px solid var(--wine);padding:17px 19px;margin:14px 0;font-size:17px;line-height:1.8;white-space:pre-line}
+.passage-title{font:700 10px Arial,sans-serif;letter-spacing:.15em;color:var(--wine);text-transform:uppercase}
+.memo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.memo{background:#F0E9DC;border-radius:10px;padding:17px}
+.memo h3{font-size:18px;margin:0 0 7px}
+.memo p,.memo li{font-size:14px}
+.chain{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;margin:18px 0}
+.chain div{padding:12px 7px;border-radius:7px;text-align:center;color:white;font:700 10px Arial,sans-serif;letter-spacing:.06em}
+.chain div:nth-child(1){background:var(--wine)}.chain div:nth-child(2){background:var(--graphite)}.chain div:nth-child(3){background:var(--blue)}.chain div:nth-child(4){background:var(--olive)}.chain div:nth-child(5){background:var(--plum)}
+details{border-top:1px solid var(--line);padding:12px 0}
+summary{cursor:pointer;font-size:16px}
+.homework{border:1px solid #C8A7A8;background:#F7EEE8}
+.homework .instruction{color:var(--wine)}
+.footer-nav{display:flex;justify-content:space-between;gap:10px;margin-top:28px;padding-top:18px;border-top:1px solid var(--line)}
+@media(max-width:820px){.shell{grid-template-columns:1fr}.sidebar{position:relative;top:0;max-height:none}.navlist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.hero{padding-top:35px}.memo-grid{grid-template-columns:1fr}}
+@media(max-width:480px){.navlist{grid-template-columns:1fr}.card{padding:16px}.chain{grid-template-columns:1fr}.chain div{text-align:left;padding:9px 12px}.topbar{font-size:10px}}
+@media print{.topbar,.sidebar,.actions,.footer-nav{display:none!important}.shell{display:block}.section{display:block!important;page-break-after:always}.card{box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="topbar"><span>Français · <strong>Bac technologique</strong></span><span>Atelier de méthode · Parcours d'entraînement</span></div>
+<header class="hero">
+ <div class="kicker">Du repérage à l'analyse</div>
+ <h1>Atelier du<br>commentaire</h1>
+ <p class="subtitle">Observer, choisir, expliquer, interpréter : entraîne-toi à construire une analyse précise avant de rédiger ton paragraphe.</p>
+ <div class="hero-meta"><span class="pill">9 ateliers pratiques</span><span class="pill">5 fiches mémo</span><span class="pill">1 devoir maison</span></div>
+</header>
+<div class="shell">
+<aside class="sidebar">
+ <div class="side-title">Ton parcours</div>
+ <div class="navlist" id="navlist"></div>
+ <div class="progress-wrap"><div class="progress-label"><span>Progression</span><strong id="progressText">0 / 10</strong></div><div class="progress"><span id="progressBar"></span></div></div>
+</aside>
+<main>
+<section class="section active" id="intro">
+ <div class="section-head"><div class="eyebrow">Bienvenue dans l'atelier</div><h2>Avant de commencer</h2><p class="lead">Chaque exercice travaille une compétence précise. Prends le temps de lire les consignes et de justifier tes choix à l'oral lorsque tu travailles en classe.</p></div>
+ <div class="card">
+  <h3>La chaîne de l'analyse</h3>
+  <p>Un commentaire ne se limite pas à raconter le texte ni à nommer des procédés. Il explique comment l'écriture produit du sens.</p>
+  <div class="chain"><div>IDÉE</div><div>CITATION</div><div>PROCÉDÉ</div><div>EFFET</div><div>INTERPRÉTATION</div></div>
+  <p class="small">Chaque élément prépare le suivant. Un maillon manquant peut rendre le raisonnement incomplet.</p>
+ </div>
+ <div class="card">
+  <h3>Comment utiliser le site ?</h3>
+  <ul><li>Réponds d'abord sans consulter les fiches mémo.</li><li>Dans les exercices fermés, clique sur <strong>Vérifier</strong> : une réponse erronée déclenche un indice, jamais la solution.</li><li>Dans les exercices ouverts, rédige directement dans les champs.</li><li>Utilise <strong>Copier</strong> à la fin de chaque exercice pour récupérer toutes tes réponses.</li></ul>
+  <p class="small">Les réponses libres seront discutées avec ton professeur : plusieurs formulations peuvent être pertinentes si elles sont justifiées par le texte.</p>
+ </div>
+ <div class="actions"><button class="btn" onclick="go('e1')">Commencer les exercices</button></div>
+</section>
+
+<section class="section" id="e1">
+ <div class="section-head"><div class="eyebrow">Atelier 01 · Reconnaître</div><h2>Les cinq éléments</h2><p class="lead">Associe chaque formulation à la fonction qu'elle remplit dans une analyse.</p></div>
+ <div class="card" id="quiz1">
+  <div class="instruction">Consigne · Choisis une catégorie pour chaque proposition</div>
+  <div id="questions1"></div>
+  <div class="actions"><button class="btn" onclick="checkQuiz('quiz1')">Vérifier</button><button class="btn secondary" onclick="copyQuiz('quiz1')">Copier</button><span class="status" id="status-quiz1"></span></div>
+ </div>
+</section>
+
+<section class="section" id="e2">
+ <div class="section-head"><div class="eyebrow">Atelier 02 · Distinguer</div><h2>Résumé, repérage ou analyse ?</h2><p class="lead">Un résumé raconte. Un repérage nomme un outil. Une analyse relie l'écriture à un effet et à un sens.</p></div>
+ <div class="card" id="quiz2">
+  <div class="instruction">Consigne · Identifie le geste dominant</div><div id="questions2"></div>
+  <div class="actions"><button class="btn" onclick="checkQuiz('quiz2')">Vérifier</button><button class="btn secondary" onclick="copyQuiz('quiz2')">Copier</button><span class="status" id="status-quiz2"></span></div>
+ </div>
+</section>
+
+<section class="section" id="e3">
+ <div class="section-head"><div class="eyebrow">Atelier 03 · Formuler</div><h2>De l'observation à l’idée</h2><p class="lead">Une idée d'analyse affirme quelque chose que tu vas démontrer. Elle ne raconte pas seulement ce qui se passe.</p></div>
+ <div class="card">
+  <div class="passage-title">Texte A · La maison</div>
+  <div class="text-passage">Elle poussa la grille, qui gémit comme un vieux chien qu'on réveille. Le jardin avait disparu sous les ronces ; seul le noyer restait debout, immense, indifférent. Elle monta les marches une à une, lentement, puis s'arrêta. La porte était entrouverte. Dans le couloir flottait cette odeur de cire et de pluie ancienne, et elle sentit sa gorge se serrer. Rien n'avait bougé : le manteau de sa mère pendait toujours au clou, et l'horloge, arrêtée, marquait encore quatre heures.</div>
+  <div class="instruction">Consigne · Observe avant de rédiger</div>
+  <label class="label">1. Note trois détails qui te semblent importants</label><textarea id="e3a" placeholder="Je remarque que…"></textarea>
+  <label class="label">2. Quelle idée générale peux-tu formuler à partir de ces détails ?</label><textarea id="e3b" placeholder="Dans cet extrait, …"></textarea>
+  <label class="label">3. Pourquoi cette formulation est-elle plus analytique qu'un simple résumé ?</label><textarea id="e3c" placeholder="Cette idée permet de démontrer que…"></textarea>
+  <div class="actions"><button class="btn secondary" onclick="copyFields(['e3a','e3b','e3c'],'Atelier 03')">Copier</button><span class="status" id="status-e3"></span></div>
+ </div>
+ <div class="card">
+  <div class="instruction">Mini-défi · Éviter les formulations trop vagues</div>
+  <p>Transforme chacune de ces formulations en une idée d'analyse plus précise.</p>
+  <label class="label">« Le texte est triste. »</label><textarea id="e3d" placeholder="Reformule…"></textarea>
+  <label class="label">« Une femme revient dans une maison. »</label><textarea id="e3e" placeholder="Reformule…"></textarea>
+  <div class="actions"><button class="btn secondary" onclick="copyFields(['e3d','e3e'],'Mini-défi · Atelier 03')">Copier</button></div>
+ </div>
+</section>
+
+<section class="section" id="e4">
+ <div class="section-head"><div class="eyebrow">Atelier 04 · Justifier</div><h2>Choisir la citation pertinente</h2><p class="lead">Une citation doit prouver l’idée annoncée. Une belle image n'est pas forcément la meilleure preuve.</p></div>
+ <div class="card" id="quiz4">
+  <div class="instruction">Consigne · Choisis la citation qui soutient le mieux chaque idée</div><div id="questions4"></div>
+  <div class="actions"><button class="btn" onclick="checkQuiz('quiz4')">Vérifier</button><button class="btn secondary" onclick="copyQuiz('quiz4')">Copier</button><span class="status" id="status-quiz4"></span></div>
+ </div>
+ <div class="card">
+  <h3>À toi de justifier</h3>
+  <p>Choisis une des deux idées précédentes et explique pourquoi la citation retenue la démontre mieux que les autres.</p>
+  <textarea id="e4open" placeholder="La citation est pertinente parce que…"></textarea>
+  <div class="actions"><button class="btn secondary" onclick="copyFields(['e4open'],'Justification · Atelier 04')">Copier</button></div>
+ </div>
+</section>
+
+<section class="section" id="e5">
+ <div class="section-head"><div class="eyebrow">Atelier 05 · Identifier</div><h2>Identifier les procédés</h2><p class="lead">Observe précisément la forme : les mots, les temps, la construction de la phrase et les images.</p></div>
+ <div class="card" id="quiz5">
+  <div class="instruction">Consigne · Sélectionne l'analyse la plus précise</div><div id="questions5"></div>
+  <div class="actions"><button class="btn" onclick="checkQuiz('quiz5')">Vérifier</button><button class="btn secondary" onclick="copyQuiz('quiz5')">Copier</button><span class="status" id="status-quiz5"></span></div>
+ </div>
+</section>
+
+<section class="section" id="e6">
+ <div class="section-head"><div class="eyebrow">Atelier 06 · Relier</div><h2>Associer citation et procédé</h2><p class="lead">Repère l'élément linguistique réellement présent dans chaque extrait. Ne confonds pas le procédé avec son effet possible.</p></div>
+ <div class="card" id="quiz6">
+  <div class="instruction">Consigne · Choisis le procédé correspondant à la citation</div><div id="questions6"></div>
+  <div class="actions"><button class="btn" onclick="checkQuiz('quiz6')">Vérifier</button><button class="btn secondary" onclick="copyQuiz('quiz6')">Copier</button><span class="status" id="status-quiz6"></span></div>
+ </div>
+ <div class="card">
+  <h3>Repérage autonome</h3>
+  <p>Dans le texte « La maison » de l'atelier 03, relève deux autres procédés ou choix d'écriture. Nomme-les avec précision.</p>
+  <label class="label">Premier relevé : citation et procédé</label><textarea id="e6a" placeholder="« … » : …"></textarea>
+  <label class="label">Deuxième relevé : citation et procédé</label><textarea id="e6b" placeholder="« … » : …"></textarea>
+  <div class="actions"><button class="btn secondary" onclick="copyFields(['e6a','e6b'],'Repérage autonome · Atelier 06')">Copier</button></div>
+ </div>
+</section>
+
+<section class="section" id="e7">
+ <div class="section-head"><div class="eyebrow">Atelier 07 · Expliquer</div><h2>Comprendre l'effet produit</h2><p class="lead">Un procédé n'a pas un effet automatique. Le contexte, les mots voisins et la situation racontée orientent l'interprétation.</p></div>
+ <div class="card">
+  <div class="passage-title">Deux extraits · Même procédé, effets différents</div>
+  <div class="text-passage"><strong>Extrait 1</strong><br>Il sauta. Il courut. La porte claqua.<br><br><strong>Extrait 2</strong><br>Elle s'assit. Plus rien. Le silence.</div>
+  <p>Dans les deux extraits, les phrases sont courtes. Pourtant, leur effet possible varie selon les actions et le contexte.</p>
+  <label class="label">1. Quel effet les phrases courtes produisent-elles dans l'extrait 1 ?</label><textarea id="e7a" placeholder="Le rythme…"></textarea>
+  <label class="label">2. Quel effet produisent-elles dans l'extrait 2 ?</label><textarea id="e7b" placeholder="Le rythme…"></textarea>
+  <label class="label">3. Quels éléments du contexte expliquent cette différence ?</label><textarea id="e7c" placeholder="Dans le premier extrait… tandis que…"></textarea>
+  <div class="actions"><button class="btn secondary" onclick="copyFields(['e7a','e7b','e7c'],'Atelier 07')">Copier</button></div>
+ </div>
+ <div class="card">
+  <div class="passage-title">Nouvelle situation · La gare</div>
+  <div class="text-passage">Le quai se vidait peu à peu. Sur le banc, un bouquet de fleurs fanées reposait à côté d'un billet froissé. Le train était parti depuis longtemps. Il regardait les rails sans bouger.</div>
+  <label class="label">4. Choisis un détail précis et décris l'effet qu'il produit dans ce passage.</label><textarea id="e7d" placeholder="Le détail « … » crée une impression de…"></textarea>
+  <label class="label">5. Explique pourquoi cet effet est lié au contexte, et non au procédé seul.</label><textarea id="e7e" placeholder="Dans ce passage, …"></textarea>
+  <div class="actions"><button class="btn secondary" onclick="copyFields(['e7d','e7e'],'Nouvelle situation · Atelier 07')">Copier</button></div>
+ </div>
+</section>
+
+<section class="section" id="e8">
+ <div class="section-head"><div class="eyebrow">Atelier 08 · Interpréter</div><h2>Effet ou interprétation ?</h2><p class="lead">L'effet décrit ce que le lecteur ressent ou perçoit. L'interprétation propose ce que ces éléments peuvent signifier dans le texte.</p></div>
+ <div class="card" id="quiz8">
+  <div class="instruction">Partie A · Classe les propositions</div><div id="questions8"></div>
+  <div class="actions"><button class="btn" onclick="checkQuiz('quiz8')">Vérifier</button><button class="btn secondary" onclick="copyQuiz('quiz8')">Copier</button><span class="status" id="status-quiz8"></span></div>
+ </div>
+ <div class="card">
+  <div class="instruction">Partie B · Construis le raisonnement</div>
+  <div class="text-passage">« Rien n'avait bougé » ; « le manteau de sa mère pendait toujours au clou » ; « l'horloge, arrêtée, marquait encore quatre heures ».</div>
+  <label class="label">1. Quel effet ces éléments produisent-ils sur le lecteur ?</label><textarea id="e8a" placeholder="Le lecteur perçoit…"></textarea>
+  <label class="label">2. Quelle interprétation peux-tu proposer ?</label><textarea id="e8b" placeholder="On peut y voir…"></textarea>
+  <label class="label">3. Ajoute une nuance : quelle autre lecture reste possible ?</label><textarea id="e8c" placeholder="On pourrait également penser que…"></textarea>
+  <div class="actions"><button class="btn secondary" onclick="copyFields(['e8a','e8b','e8c'],'Partie B · Atelier 08')">Copier</button></div>
+ </div>
+</section>
+
+<section class="section" id="e9">
+ <div class="section-head"><div class="eyebrow">Atelier 09 · Organiser</div><h2>Remettre l'analyse en ordre</h2><p class="lead">Un paragraphe suit une progression logique. Replace les éléments dans l'ordre qui permet de construire une démonstration.</p></div>
+ <div class="card" id="quiz9">
+  <div class="instruction">Consigne · Choisis l'ordre logique des cinq éléments</div>
+  <div class="question"><div class="qtitle">Quel enchaînement correspond à la méthode étudiée ?</div><div class="options" id="orderOptions"></div><div class="feedback" id="feedback-order"></div></div>
+  <div class="actions"><button class="btn" onclick="checkOrder()">Vérifier</button><button class="btn secondary" onclick="copyQuiz('quiz9')">Copier</button><span class="status" id="status-quiz9"></span></div>
+ </div>
+ <div class="card">
+  <h3>Repérer les maillons manquants</h3>
+  <p>Voici une analyse incomplète. Indique quels éléments de la chaîne sont absents ou insuffisamment développés.</p>
+  <div class="text-passage">« La maison semble figée dans le passé. L'horloge est arrêtée. »</div>
+  <textarea id="e9a" placeholder="Il manque… parce que…"></textarea>
+  <div class="actions"><button class="btn secondary" onclick="copyFields(['e9a'],'Maillons manquants · Atelier 09')">Copier</button></div>
+ </div>
+</section>
+
+<section class="section" id="memos">
+ <div class="section-head"><div class="eyebrow">Ressources · À consulter</div><h2>Fiches mémo</h2><p class="lead">Des rappels courts pour retrouver les bons réflexes pendant l'analyse.</p></div>
+ <div class="memo-grid">
+  <div class="memo"><h3>01 · Les cinq éléments</h3><ol><li><strong>Idée :</strong> ce que je veux démontrer.</li><li><strong>Citation :</strong> la preuve exacte, courte et intégrée.</li><li><strong>Procédé :</strong> le choix d'écriture observable.</li><li><strong>Effet :</strong> l'impression ou l'atmosphère produite.</li><li><strong>Interprétation :</strong> le sens que l'on peut en tirer.</li></ol></div>
+  <div class="memo"><h3>02 · Effet ou interprétation ?</h3><p><strong>Effet :</strong> ce que je perçois en lisant : impression, émotion, atmosphère, rythme.</p><p><strong>Interprétation :</strong> ce que je comprends du sens pour le personnage, la scène ou le thème.</p><p>Formules utiles : « Le lecteur perçoit… » ; « Cela crée une impression de… » ; « On peut y voir… » ; « Cela laisse penser que… ».</p></div>
+  <div class="memo"><h3>03 · Les procédés à observer</h3><ul><li>Le vocabulaire et les champs lexicaux.</li><li>Les figures de style : comparaison, métaphore, personnification.</li><li>Les temps verbaux et les valeurs qu'ils prennent dans le passage.</li><li>La négation, les adverbes et les répétitions.</li><li>La longueur des phrases, le rythme et la ponctuation.</li><li>Le point de vue et les détails symboliques, si le contexte le justifie.</li></ul><p class="small">Cette liste est un aide-mémoire : il faut toujours partir de ce qui est réellement présent dans le texte.</p></div>
+  <div class="memo"><h3>04 · Formuler son analyse</h3><p><strong>Pour annoncer une idée :</strong> « Dans cet extrait, … »</p><p><strong>Pour introduire une preuve :</strong> « On le remarque notamment dans… »</p><p><strong>Pour décrire un effet :</strong> « Le lecteur perçoit… » ; « Cela crée une impression de… »</p><p><strong>Pour interpréter :</strong> « On peut y voir… » ; « Cela laisse penser que… » ; « Cette image semble suggérer… »</p><p><strong>Pour nuancer :</strong> « pourrait », « semble », « peut suggérer », « on peut également envisager… ».</p></div>
+  <div class="memo"><h3>05 · Les erreurs à éviter</h3><ul><li>Raconter l'histoire au lieu de défendre une idée.</li><li>Recopier une citation trop longue.</li><li>Nommer un procédé sans le relier à la citation.</li><li>Employer un effet vague : « c'est joli », « cela rend le texte vivant ».</li><li>Attribuer un effet automatique à un procédé.</li><li>Présenter une interprétation comme une certitude sans preuve.</li></ul></div>
+ </div>
+</section>
+
+<section class="section" id="homework">
+ <div class="section-head"><div class="eyebrow">Devoir à la maison</div><h2>Construire son paragraphe</h2><p class="lead">Travail individuel · Réinvestis la méthode sans suivre un modèle déjà rempli.</p></div>
+ <div class="card homework">
+  <div class="instruction">Consigne générale</div>
+  <h3>Lis le texte, puis rédige un paragraphe d'analyse complet.</h3>
+  <div class="passage-title">Texte B · La chambre</div>
+  <div class="text-passage">Chaque soir, Élise ouvrait la porte de la chambre sans allumer la lumière. La poussière dessinait un voile gris sur les meubles. Sur le bureau, un cahier restait ouvert à la même page ; une phrase, interrompue par trois points, semblait attendre la suite. Elle posa la main sur le dossier de la chaise. Le bois était froid. Dans la rue, les voix passaient, lointaines, puis s'effaçaient. Élise referma doucement la porte, comme si elle risquait de réveiller quelqu'un.</div>
+  <p><strong>Question :</strong> Comment cet extrait donne-t-il à la chambre une présence liée à l’absence ?</p>
+  <label class="label">Étape 1 · Tes observations</label><textarea id="hwa" placeholder="Relève les détails qui te semblent significatifs…"></textarea>
+  <label class="label">Étape 2 · Ton idée d'analyse</label><textarea id="hwb" placeholder="Dans cet extrait, …"></textarea>
+  <label class="label">Étape 3 · Ta ou tes citations</label><textarea id="hwc" placeholder="« … »"></textarea>
+  <label class="label">Étape 4 · Les procédés repérés</label><textarea id="hwd" placeholder="On observe…"></textarea>
+  <label class="label">Étape 5 · L'effet produit</label><textarea id="hwe" placeholder="Le lecteur perçoit…"></textarea>
+  <label class="label">Étape 6 · Ton interprétation nuancée</label><textarea id="hwf" placeholder="On peut y voir…"></textarea>
+  <label class="label">Étape 7 · Rédige ton paragraphe complet, sans aide</label><textarea id="hwg" style="min-height:190px" placeholder="Dans cet extrait, …"></textarea>
+  <div class="actions"><button class="btn secondary" onclick="copyFields(['hwa','hwb','hwc','hwd','hwe','hwf','hwg'],'Devoir à la maison · Texte B')">Copier tout le devoir</button><span class="status" id="status-homework"></span></div>
+  <p class="small">Avant de rendre ton travail, vérifie que ton paragraphe contient une idée, une preuve, un procédé, un effet et une interprétation reliés par des connecteurs.</p>
+ </div>
+</section>
+
+<div class="footer-nav"><button class="btn secondary" id="prevBtn" onclick="step(-1)">← Précédent</button><button class="btn" id="nextBtn" onclick="step(1)">Suivant →</button></div>
+</main>
+</div>
+<script>
+const sections=['intro','e1','e2','e3','e4','e5','e6','e7','e8','e9','memos','homework'];
+const labels=['Accueil','Les cinq éléments','Résumé, repérage ou analyse','De l’observation à l’idée','Choisir la citation','Identifier les procédés','Associer citation et procédé','Comprendre l’effet','Effet ou interprétation','Remettre en ordre','Fiches mémo','Devoir à la maison'];
+let current=0,completed=new Set();
+const data={
+ quiz1:[
+  {q:'« Le retour dans la maison fait apparaître un lieu figé dans le passé. »',o:['Idée','Citation','Procédé','Effet','Interprétation'],a:0,h:'Demande-toi si la phrase annonce ce que tu veux démontrer ou si elle décrit un outil, une preuve ou une réaction.'},
+  {q:'« Rien n’avait bougé. »',o:['Idée','Citation','Procédé','Effet','Interprétation'],a:1,h:'Cette formulation reprend exactement les mots du texte : quelle fonction joue une preuve textuelle ?'},
+  {q:'Le plus-que-parfait associé à la négation totale.',o:['Idée','Citation','Procédé','Effet','Interprétation'],a:2,h:'On décrit ici un choix de langue observable dans la phrase.'},
+  {q:'Une impression d’immobilité silencieuse, presque pesante.',o:['Idée','Citation','Procédé','Effet','Interprétation'],a:3,h:'Cette formulation décrit ce que le lecteur ressent ou perçoit.'},
+  {q:'Le personnage semble prisonnier d’un passé douloureux.',o:['Idée','Citation','Procédé','Effet','Interprétation'],a:4,h:'Cette phrase propose un sens possible à partir des indices du texte.'}
+ ],
+ quiz2:[
+  {q:'« Une femme revient dans la maison de son enfance. »',o:['Résumé','Repérage','Analyse'],a:0,h:'La phrase raconte la situation sans expliquer comment l’écriture fonctionne.'},
+  {q:'« On remarque une comparaison dans la première phrase. »',o:['Résumé','Repérage','Analyse'],a:1,h:'La phrase nomme un outil d’écriture, mais n’explique pas encore sa fonction.'},
+  {q:'« La comparaison donne à la grille une présence presque humaine et fragile. »',o:['Résumé','Repérage','Analyse'],a:2,h:'La phrase relie un choix d’écriture à un effet produit dans ce passage.'},
+  {q:'« Le jardin est envahi par les ronces et la porte est entrouverte. »',o:['Résumé','Repérage','Analyse'],a:0,h:'La phrase rapporte des éléments de la scène sans les interpréter.'},
+  {q:'« Le mot “encore” insiste sur la permanence de la situation. »',o:['Résumé','Repérage','Analyse'],a:2,h:'La phrase ne se contente pas de nommer le mot : elle explique ce qu’il souligne.'}
+ ],
+ quiz4:[
+  {q:'Idée : le lieu semble figé dans le passé. Quelle citation est la plus directement pertinente ?',o:['« Elle poussa la grille »','« Rien n’avait bougé »','« Elle sentit sa gorge se serrer »'],a:1,h:'Vérifie quelle citation exprime directement l’absence de changement dans le lieu.'},
+  {q:'Idée : le souvenir de la mère reste présent dans la maison. Quelle preuve est la plus précise ?',o:['« le manteau de sa mère pendait toujours au clou »','« Elle monta les marches une à une »','« Le jardin avait disparu sous les ronces »'],a:0,h:'Cherche l’objet explicitement associé à la mère et encore présent dans la maison.'},
+  {q:'Idée : le retour provoque une réaction physique chez le personnage. Quelle citation convient le mieux ?',o:['« l’horloge, arrêtée »','« elle sentit sa gorge se serrer »','« le noyer restait debout »'],a:1,h:'La preuve doit montrer directement une réaction corporelle du personnage.'}
+ ],
+ quiz5:[
+  {q:'Dans « la grille, qui gémit comme un vieux chien qu’on réveille », quel procédé est le plus précisément identifiable ?',o:['Une comparaison','Une hyperbole','Une anaphore'],a:0,h:'Repère l’outil de rapprochement explicitement introduit dans la phrase.'},
+  {q:'Dans « Rien n’avait bougé », quelle analyse grammaticale est pertinente ?',o:['Présent de narration et interrogation','Plus-que-parfait et négation totale','Futur simple et exclamation'],a:1,h:'Observe la forme verbale « avait bougé » et la négation construite autour de « rien ».'},
+  {q:'Dans « le manteau de sa mère pendait toujours au clou », quel élément souligne la continuité ?',o:['L’adverbe « toujours »','Le nom « manteau »','La préposition « au »'],a:0,h:'Cherche le mot qui marque explicitement la permanence dans le temps.'},
+  {q:'Dans « Il sauta. Il courut. La porte claqua. », quel choix de construction est observable ?',o:['Une longue phrase complexe','Une succession de phrases courtes','Une question rhétorique'],a:1,h:'Observe la longueur et l’enchaînement des phrases.'},
+  {q:'Dans « le noyer restait debout, immense, indifférent », quel procédé est présent ?',o:['Une personnification','Une comparaison avec outil explicite','Une énumération de verbes d’action'],a:0,h:'Un trait ou une attitude humaine est attribué à un élément non humain.'}
+ ],
+ quiz6:[
+  {q:'« Elle gémit comme un vieux chien. »',o:['Comparaison','Métaphore','Antithèse'],a:0,h:'Le rapprochement est introduit par un outil de comparaison explicite.'},
+  {q:'« Rien n’avait bougé. »',o:['Négation totale','Question indirecte','Discours direct'],a:0,h:'Observe la négation exprimée par « rien ».'},
+  {q:'« toujours » et « encore »',o:['Adverbes de permanence','Pronoms personnels','Conjonctions de coordination'],a:0,h:'Ces mots indiquent ici que quelque chose se prolonge dans le temps.'},
+  {q:'« Elle s’assit. Plus rien. Le silence. »',o:['Phrases courtes et fragments de phrases','Discours indirect libre uniquement','Accumulation de propositions subordonnées'],a:0,h:'Regarde la segmentation et l’absence de longues constructions syntaxiques.'},
+  {q:'« le noyer restait debout, immense, indifférent »',o:['Personnification','Rime intérieure','Litote'],a:0,h:'Le mot « indifférent » prête au noyer une attitude qui évoque un comportement humain.'}
+ ],
+ quiz8:[
+  {q:'« Une impression d’immobilité silencieuse, presque pesante. »',o:['Effet','Interprétation'],a:0,h:'La phrase décrit une impression ressentie pendant la lecture.'},
+  {q:'« Le personnage n’a pas fait le deuil de sa mère. »',o:['Effet','Interprétation'],a:1,h:'La phrase propose une explication du sens de la scène et de l’état du personnage.'},
+  {q:'« Le rythme devient lent et donne une impression d’arrêt. »',o:['Effet','Interprétation'],a:0,h:'La phrase décrit ce que la forme fait percevoir au lecteur.'},
+  {q:'« La maison peut représenter un refuge de la mémoire. »',o:['Effet','Interprétation'],a:1,h:'La phrase attribue une signification possible à l’image de la maison.'},
+  {q:'« Le lecteur ressent une tension discrète. »',o:['Effet','Interprétation'],a:0,h:'La formulation nomme une réaction de lecture.'}
+ ]
+};
+function buildNav(){
+ const nav=document.getElementById('navlist');
+ sections.forEach((id,i)=>{let b=document.createElement('button');b.className='navbtn'+(i===0?' active':'');b.id='nav-'+id;b.innerHTML=`<span class="navnum">${i===0?'•':String(i).padStart(2,'0')}</span><span>${labels[i]}</span>`;b.onclick=()=>go(id);nav.appendChild(b)});
+}
+function go(id){
+ current=sections.indexOf(id);sections.forEach((s,i)=>{document.getElementById(s).classList.toggle('active',i===current);document.getElementById('nav-'+s).classList.toggle('active',i===current)});
+ document.getElementById('prevBtn').style.visibility=current===0?'hidden':'visible';
+ document.getElementById('nextBtn').style.display=current===sections.length-1?'none':'inline-block';
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function step(d){go(sections[Math.max(0,Math.min(sections.length-1,current+d))])}
+function renderQuiz(id,items){
+ const root=document.getElementById(id);root.innerHTML='';
+ items.forEach((q,i)=>{
+  let div=document.createElement('div');div.className='question';div.dataset.answer=q.a;div.dataset.hint=q.h;
+  div.innerHTML=`<div class="qtitle">${i+1}. ${q.q}</div><div class="options">${q.o.map((o,j)=>`<label class="option"><input type="radio" name="${id}-q${i}" value="${j}"><span>${o}</span></label>`).join('')}</div><div class="feedback"></div>`;
+  root.appendChild(div);
+ });
+}
+function checkQuiz(id){
+ const root=document.getElementById(id),qs=[...root.querySelectorAll('.question')];let score=0,answered=0;
+ qs.forEach(q=>{
+  const chosen=q.querySelector('input:checked'),fb=q.querySelector('.feedback');q.querySelectorAll('.option').forEach(o=>o.classList.remove('correct','incorrect'));
+  if(!chosen){fb.className='feedback show bad';fb.textContent='Choisis une réponse avant de vérifier.';return}
+  answered++;const isGood=Number(chosen.value)===Number(q.dataset.answer);
+  if(isGood){score++;chosen.closest('.option').classList.add('correct');fb.className='feedback show good';fb.textContent='Bonne réponse. Ton choix correspond à la fonction ou à l’élément recherché.'}
+  else{chosen.closest('.option').classList.add('incorrect');fb.className='feedback show bad';fb.textContent='Ce choix ne convient pas. '+q.dataset.hint+' Relis la consigne et essaie de préciser ton raisonnement.'}
+ });
+ const status=document.getElementById('status-'+id);status.textContent=`${score} / ${qs.length} · ${answered} réponse(s) vérifiée(s)`;
+ if(answered===qs.length)markDone(({quiz1:'e1',quiz2:'e2',quiz4:'e4',quiz5:'e5',quiz6:'e6',quiz8:'e8'})[id]||id);
+}
+function markDone(id){let idx=sections.indexOf(id);if(idx>0)completed.add(id);updateProgress()}
+function updateProgress(){let n=completed.size;document.getElementById('progressText').textContent=`${n} / 10`;document.getElementById('progressBar').style.width=(n/10*100)+'%';completed.forEach(id=>document.getElementById('nav-'+id)?.classList.add('done'))}
+function copyText(text,statusId){
+ const done=()=>{let el=document.getElementById(statusId);if(el)el.textContent='Copié.'};
+ if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(text).then(done).catch(()=>fallbackCopy(text,done))}
+ else fallbackCopy(text,done);
+}
+function fallbackCopy(text,done){let t=document.createElement('textarea');t.value=text;document.body.appendChild(t);t.select();try{document.execCommand('copy');done()}catch(e){}t.remove()}
+function copyFields(ids,title){
+ let out=[title,''];ids.forEach((id,i)=>{let el=document.getElementById(id);out.push(`${i+1}. ${el?.previousElementSibling?.textContent||'Réponse'}`,el?.value||'(non renseigné)','')});
+ copyText(out.join('\n'),ids[0]?.startsWith('hw')?'status-homework':ids[0]?.startsWith('e3')?'status-e3':null);
+}
+function copyQuiz(id){
+ const root=document.getElementById(id);let out=[`Réponses · ${id}`,''];
+ [...root.querySelectorAll('.question')].forEach((q,i)=>{let chosen=q.querySelector('input:checked');out.push(`${i+1}. ${q.querySelector('.qtitle').textContent}`,chosen?chosen.closest('label').innerText.trim():'(sans réponse)')});
+ if(id==='quiz9'){let chosen=root.querySelector('input:checked');out.push('Ordre choisi : '+(chosen?chosen.closest('label').innerText.trim():'(sans réponse)'))}
+ copyText(out.join('\n'),`status-${id}`);
+}
+function checkOrder(){
+ let chosen=document.querySelector('input[name="order"]:checked'),fb=document.getElementById('feedback-order');
+ document.querySelectorAll('#orderOptions .option').forEach(o=>o.classList.remove('correct','incorrect'));
+ if(!chosen){fb.className='feedback show bad';fb.textContent='Choisis une proposition avant de vérifier.';return}
+ let good=chosen.value==='0';chosen.closest('label').classList.add(good?'correct':'incorrect');
+ fb.className='feedback show '+(good?'good':'bad');
+ fb.textContent=good?'Bonne réponse. La progression part de l’affirmation, apporte une preuve, explique le choix d’écriture, décrit son effet puis propose un sens.':'L’ordre proposé ne suit pas la progression de la démonstration. Demande-toi ce qu’il faut annoncer avant de prouver, puis expliquer.';
+ document.getElementById('status-quiz9').textContent=good?'Ordre cohérent.':'À reprendre.';
+ if(good)markDone('e9');
+}
+buildNav();
+Object.entries({quiz1:'quiz1',quiz2:'quiz2',quiz4:'quiz4',quiz5:'quiz5',quiz6:'quiz6',quiz8:'quiz8'}).forEach(([id,key])=>renderQuiz(id,data[key]));
+const orderChoices=[
+ 'Idée → Citation → Procédé → Effet → Interprétation',
+ 'Citation → Effet → Idée → Interprétation → Procédé',
+ 'Procédé → Interprétation → Citation → Idée → Effet',
+ 'Effet → Procédé → Citation → Interprétation → Idée'
+];
+document.getElementById('orderOptions').innerHTML=orderChoices.map((x,i)=>`<label class="option"><input type="radio" name="order" value="${i}"><span>${x}</span></label>`).join('');
+go('intro');
+</script>
+</body>
+</html>
